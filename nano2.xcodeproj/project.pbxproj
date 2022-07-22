@@ -7,25 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		847C1DAFFF91FF6BFDA2682E /* Pods_nano2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F9A4678629AE0F93F19C2 /* Pods_nano2.framework */; };
 		9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554C29A288A5127003CF7CA /* AppDelegate.swift */; };
 		9554C29D288A5127003CF7CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554C29C288A5127003CF7CA /* SceneDelegate.swift */; };
 		9554C29F288A5127003CF7CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554C29E288A5127003CF7CA /* ViewController.swift */; };
-		9554C2A2288A5127003CF7CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9554C2A0288A5127003CF7CA /* Main.storyboard */; };
 		9554C2A5288A5127003CF7CA /* nano2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9554C2A3288A5127003CF7CA /* nano2.xcdatamodeld */; };
 		9554C2A7288A512A003CF7CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9554C2A6288A512A003CF7CA /* Assets.xcassets */; };
 		9554C2AA288A512A003CF7CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9554C2A8288A512A003CF7CA /* LaunchScreen.storyboard */; };
+		9554C2B9288A7D0B003CF7CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9554C2B8288A7D0B003CF7CA /* GoogleService-Info.plist */; };
+		9554C2BC288A88C7003CF7CA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9554C2BB288A88C7003CF7CA /* FirebaseAuth */; };
+		9554C2BE288A88C7003CF7CA /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9554C2BD288A88C7003CF7CA /* FirebaseDatabase */; };
+		9554C2C0288A88C7003CF7CA /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9554C2BF288A88C7003CF7CA /* FirebaseDatabaseSwift */; };
+		9554C2C2288A88C7003CF7CA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9554C2C1288A88C7003CF7CA /* FirebaseFirestore */; };
+		9554C2C4288A88C7003CF7CA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9554C2C3288A88C7003CF7CA /* FirebaseFirestoreSwift */; };
+		9554C2C6288A88C7003CF7CA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 9554C2C5288A88C7003CF7CA /* FirebaseFunctions */; };
+		9554C2C8288A88C7003CF7CA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9554C2C7288A88C7003CF7CA /* FirebaseStorage */; };
+		9554C2CA288A91C9003CF7CA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9554C2C9288A91C9003CF7CA /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E9F9A4678629AE0F93F19C2 /* Pods_nano2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nano2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9554C297288A5127003CF7CA /* nano2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nano2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9554C29A288A5127003CF7CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9554C29C288A5127003CF7CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9554C29E288A5127003CF7CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9554C2A1288A5127003CF7CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9554C2A4288A5127003CF7CA /* nano2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = nano2.xcdatamodel; sourceTree = "<group>"; };
 		9554C2A6288A512A003CF7CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9554C2A9288A512A003CF7CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9554C2AB288A512A003CF7CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9554C2B8288A7D0B003CF7CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9554C2C9288A91C9003CF7CA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		C7198A8D9CCF2DB71DDD96DD /* Pods-nano2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nano2.release.xcconfig"; path = "Target Support Files/Pods-nano2/Pods-nano2.release.xcconfig"; sourceTree = "<group>"; };
+		FBA5A12984693E310C547F74 /* Pods-nano2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nano2.debug.xcconfig"; path = "Target Support Files/Pods-nano2/Pods-nano2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +46,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9554C2C4288A88C7003CF7CA /* FirebaseFirestoreSwift in Frameworks */,
+				9554C2C0288A88C7003CF7CA /* FirebaseDatabaseSwift in Frameworks */,
+				9554C2C2288A88C7003CF7CA /* FirebaseFirestore in Frameworks */,
+				9554C2C6288A88C7003CF7CA /* FirebaseFunctions in Frameworks */,
+				9554C2C8288A88C7003CF7CA /* FirebaseStorage in Frameworks */,
+				9554C2BE288A88C7003CF7CA /* FirebaseDatabase in Frameworks */,
+				9554C2BC288A88C7003CF7CA /* FirebaseAuth in Frameworks */,
+				847C1DAFFF91FF6BFDA2682E /* Pods_nano2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C90FC07B5527F211578D562 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E9F9A4678629AE0F93F19C2 /* Pods_nano2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9554C28E288A5127003CF7CA = {
 			isa = PBXGroup;
 			children = (
 				9554C299288A5127003CF7CA /* nano2 */,
+				9554C2C9288A91C9003CF7CA /* Podfile */,
 				9554C298288A5127003CF7CA /* Products */,
+				A2C2E4457B6843C7ABB90E9B /* Pods */,
+				3C90FC07B5527F211578D562 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,13 +93,22 @@
 				9554C29A288A5127003CF7CA /* AppDelegate.swift */,
 				9554C29C288A5127003CF7CA /* SceneDelegate.swift */,
 				9554C29E288A5127003CF7CA /* ViewController.swift */,
-				9554C2A0288A5127003CF7CA /* Main.storyboard */,
 				9554C2A6288A512A003CF7CA /* Assets.xcassets */,
 				9554C2A8288A512A003CF7CA /* LaunchScreen.storyboard */,
 				9554C2AB288A512A003CF7CA /* Info.plist */,
+				9554C2B8288A7D0B003CF7CA /* GoogleService-Info.plist */,
 				9554C2A3288A5127003CF7CA /* nano2.xcdatamodeld */,
 			);
 			path = nano2;
+			sourceTree = "<group>";
+		};
+		A2C2E4457B6843C7ABB90E9B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FBA5A12984693E310C547F74 /* Pods-nano2.debug.xcconfig */,
+				C7198A8D9CCF2DB71DDD96DD /* Pods-nano2.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,15 +118,26 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9554C2AE288A512A003CF7CA /* Build configuration list for PBXNativeTarget "nano2" */;
 			buildPhases = (
+				65FEE059CDD0916D405CF4D8 /* [CP] Check Pods Manifest.lock */,
 				9554C293288A5127003CF7CA /* Sources */,
 				9554C294288A5127003CF7CA /* Frameworks */,
 				9554C295288A5127003CF7CA /* Resources */,
+				DF11B60DC5C95FF214C9639D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = nano2;
+			packageProductDependencies = (
+				9554C2BB288A88C7003CF7CA /* FirebaseAuth */,
+				9554C2BD288A88C7003CF7CA /* FirebaseDatabase */,
+				9554C2BF288A88C7003CF7CA /* FirebaseDatabaseSwift */,
+				9554C2C1288A88C7003CF7CA /* FirebaseFirestore */,
+				9554C2C3288A88C7003CF7CA /* FirebaseFirestoreSwift */,
+				9554C2C5288A88C7003CF7CA /* FirebaseFunctions */,
+				9554C2C7288A88C7003CF7CA /* FirebaseStorage */,
+			);
 			productName = nano2;
 			productReference = 9554C297288A5127003CF7CA /* nano2.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +166,10 @@
 				Base,
 			);
 			mainGroup = 9554C28E288A5127003CF7CA;
+			packageReferences = (
+				9554C2B7288A6909003CF7CA /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9554C298288A5127003CF7CA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,11 +186,54 @@
 			files = (
 				9554C2AA288A512A003CF7CA /* LaunchScreen.storyboard in Resources */,
 				9554C2A7288A512A003CF7CA /* Assets.xcassets in Resources */,
-				9554C2A2288A5127003CF7CA /* Main.storyboard in Resources */,
+				9554C2CA288A91C9003CF7CA /* Podfile in Resources */,
+				9554C2B9288A7D0B003CF7CA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65FEE059CDD0916D405CF4D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nano2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF11B60DC5C95FF214C9639D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-nano2/Pods-nano2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-nano2/Pods-nano2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-nano2/Pods-nano2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9554C293288A5127003CF7CA /* Sources */ = {
@@ -151,14 +250,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9554C2A0288A5127003CF7CA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9554C2A1288A5127003CF7CA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9554C2A8288A512A003CF7CA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,6 +377,7 @@
 		};
 		9554C2AF288A512A003CF7CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBA5A12984693E310C547F74 /* Pods-nano2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -296,7 +388,6 @@
 				INFOPLIST_FILE = nano2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -314,6 +405,7 @@
 		};
 		9554C2B0288A512A003CF7CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7198A8D9CCF2DB71DDD96DD /* Pods-nano2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -324,7 +416,6 @@
 				INFOPLIST_FILE = nano2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -362,6 +453,63 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9554C2B7288A6909003CF7CA /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9554C2BB288A88C7003CF7CA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		9554C2BD288A88C7003CF7CA /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		9554C2BF288A88C7003CF7CA /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		9554C2C1288A88C7003CF7CA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		9554C2C3288A88C7003CF7CA /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		9554C2C5288A88C7003CF7CA /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		9554C2C7288A88C7003CF7CA /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9554C2BA288A88C7003CF7CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9554C2A3288A5127003CF7CA /* nano2.xcdatamodeld */ = {
