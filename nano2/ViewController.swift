@@ -6,19 +6,18 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
 
     let descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.text = "Join us today in our fun and games!"
-        textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
     
     let momoImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "momo"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -35,17 +34,20 @@ class ViewController: UIViewController {
     }
     
     func configure(){
-        momoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        momoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        momoImageView.widthAnchor.constraint(equalToConstant:200).isActive = true
-        momoImageView.heightAnchor.constraint(equalToConstant:200).isActive = true
         
-        descriptionTextView.topAnchor.constraint(equalTo: momoImageView.bottomAnchor, constant: 50).isActive = true
-        descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        momoImageView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(view).offset(100)
+            make.centerX.equalTo(view)
+            make.height.equalTo(200)
+            make.width.equalTo(200)
+        }
+        
+        descriptionTextView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(momoImageView.snp.bottom).offset(50)
+            make.width.equalTo(view)
+            make.bottom.equalTo(view)
+        }
     }
-
 
 }
 

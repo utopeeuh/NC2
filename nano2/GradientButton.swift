@@ -9,12 +9,21 @@ import UIKit
 
 class GradientButton: UIButton {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    required init() {
+        super.init(frame: .zero)
+        
+        self.layer.cornerRadius = 50
+        self.frame.size = CGSize(width: 100, height: 50)
+        self.backgroundColor = .clear
+        
+        let gradient = CAGradientLayer()
+        gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255,  blue: 75/255, alpha: 1)]
+        gradient.frame = self.bounds
+        self.layer.insertSublayer(gradient, at: 0)
+        self.layer.masksToBounds = true;
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

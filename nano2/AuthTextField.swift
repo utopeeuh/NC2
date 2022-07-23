@@ -8,13 +8,20 @@
 import UIKit
 
 class AuthTextField: UITextField {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Create the bottom line
+        let bottomLine = CALayer()
+        
+        bottomLine.frame = CGRect(x: 0, y: self.frame.height - 2, width: self.frame.width, height: 1)
+        
+        bottomLine.backgroundColor = UIColor.init(red: 197/255, green: 199/255, blue: 196/255, alpha: 1).cgColor
+        
+        // Remove border on text field
+        self.borderStyle = .none
+        
+        // Add the line to the text field
+        self.layer.addSublayer(bottomLine)
     }
-    */
-
 }
