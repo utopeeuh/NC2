@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class HomeVC: UIViewController {
 
     let descriptionTextView: UITextView = {
         let textView = UITextView()
@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         view.backgroundColor = .yellow
     
@@ -47,6 +48,14 @@ class ViewController: UIViewController {
             make.width.equalTo(view)
             make.bottom.equalTo(view)
         }
+        
+        let addBigTask = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addBigTaskTapped))
+        navigationItem.rightBarButtonItem = addBigTask
+    }
+    
+    @objc func addBigTaskTapped(_ sender: Any){
+        let vc = scene.addBigTaskVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

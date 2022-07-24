@@ -3,26 +3,11 @@ import FirebaseAuth
 import Firebase
 import SnapKit
 
-class SignUpViewController: UIViewController {
+class SignUpVC: UIViewController, VCConfig {
 
-    let emailTextField : UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Enter your e-mail"
-        return tf
-    }()
-    
-    let usernameTextField : UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Enter your username"
-        return tf
-    }()
-    
-    let passwordTextField : UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Enter your password"
-        tf.isSecureTextEntry = true
-        return tf
-    }()
+    var emailTextField : Textfield!
+    var usernameTextField : Textfield!
+    var passwordTextField : Textfield!
     
     let signUpButton : UIButton = {
         let button = UIButton()
@@ -33,6 +18,15 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
+    let logInButton : UIButton = {
+        let button = UIButton()
+        button.frame.size = CGSize(width: 100, height: 50)
+        button.backgroundColor = .green
+        button.setTitle("Log In", for: .normal)
+        
+        return button
+    }()
+
     let errorLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 9, weight: .medium)
@@ -42,37 +36,56 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
         view.backgroundColor = .white
         
-        // Do any additional setup after loading the view.
-//        navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
-//        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)]
-//        navigationController?.navigationBar.titleTextAttributes = textAttributes
-//        navigationController?.navigationBar.topItem!.title = " "
+        addComponents()
+        configureLayout()
+        configureComponents()
+    }
+    
+    func addComponents() {
+        emailTextField = Textfield()
+        usernameTextField = Textfield()
+        passwordTextField = Textfield()
         
         view.addSubview(emailTextField)
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(signUpButton)
+        view.addSubview(logInButton)
         view.addSubview(errorLabel)
-        
-        signUpButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
-        
-        configure()
     }
     
-    func configure(){
-
+    func configureLayout() {
         emailTextField.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(view).offset(100)
+            make.top.equalTo(view).offset(K.Offset.topComponent)
             make.centerX.equalTo(view)
-            make.width.equalTo(view).offset(-40)
+            make.width.equalTo(view).offset(-K.Offset.width)
         }
 
-        setConstraints(usernameTextField, emailTextField, 15)
-        setConstraints(passwordTextField, usernameTextField, 15)
-        setConstraints(signUpButton, passwordTextField, 15)
-        setConstraints(errorLabel, signUpButton, 15)
+        setConstraints(usernameTextField, emailTextField, K.Offset.lg)
+        setConstraints(passwordTextField, usernameTextField, K.Offset.lg)
+        setConstraints(signUpButton, passwordTextField, K.Offset.lg)
+        setConstraints(logInButton, signUpButton, K.Offset.md)
+        setConstraints(errorLabel, logInButton, K.Offset.sm)
+    }
+    
+    func configureComponents() {
+        signUpButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
+        logInButton.addTarget(self, action: #selector(logInTapped), for: .touchUpInside)
+        
+        emailTextField.setText("Enter your email")
+        emailTextField.addBottomBorder()
+        
+        usernameTextField.setText("Enter your email")
+        usernameTextField.addBottomBorder()
+
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.setText("Enter your password")
+        passwordTextField.addBottomBorder()
     }
     
     func setConstraints(_ tf: ConstraintView, _ top: ConstraintView, _ offset: Int){
@@ -162,16 +175,21 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    @objc func logInTapped(_ sender: UIButton){
+        transitionToLogin()
+    }
+    
     func showError(_ message:String) {
         errorLabel.text = message
         errorLabel.alpha = 1
     }
 
     func transitionToLogin() {
+        if let navController = self.navigationController {
+            navController.popViewController(animated: false)
+        }
         
-        let loginViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController) as? LogInViewController
-        
-        view.window?.rootViewController = loginViewController
-        view.window?.makeKeyAndVisible()
+        let vc = scene.loginVC
+        self.navigationController?.pushViewController(vc, animated: false)
     }
 }
