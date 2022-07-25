@@ -11,33 +11,11 @@ import SnapKit
 
 class LogInVC: UIViewController, VCConfig{
     
-    var emailTextField : Textfield!
-    var passwordTextField : Textfield!
-    
-    let logInButton : UIButton = {
-        let button = UIButton()
-        button.frame.size = CGSize(width: 100, height: 50)
-        button.backgroundColor = .red
-        button.setTitle("Log In", for: .normal)
-        
-        return button
-    }()
-    
-    let signUpButton: UIButton = {
-        let button = UIButton()
-        button.frame.size = CGSize(width: 100, height: 50)
-        button.backgroundColor = .green
-        button.setTitle("Sign Up", for: .normal)
-        
-        return button
-    }()
-    
-    let errorLabel : UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 9, weight: .medium)
-        label.textColor = .red
-        return label
-    }()
+    var emailTextField = Textfield()
+    var passwordTextField = Textfield()
+    let logInButton = UIButton()
+    let signUpButton = UIButton()
+    let errorLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,29 +24,42 @@ class LogInVC: UIViewController, VCConfig{
         
         view.backgroundColor = .white
         
-        addComponents()
-        configureLayout()
         configureComponents()
-        
-        logInButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
-        signUpButton.addTarget(self, action: #selector(signupTapped), for: .touchUpInside)
+        configureLayout()
         
         loginTapped(self)
     }
     
-    func addComponents(){
-        emailTextField = Textfield()
-        passwordTextField = Textfield()
+    func configureComponents(){
+        emailTextField.setText("Enter your email")
+        emailTextField.addBottomBorder()
+
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.setText("Enter your password")
+        passwordTextField.addBottomBorder()
         
+        logInButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        logInButton.frame.size = CGSize(width: 100, height: 50)
+        logInButton.backgroundColor = .red
+        logInButton.setTitle("Log In", for: .normal)
+        
+        signUpButton.addTarget(self, action: #selector(signupTapped), for: .touchUpInside)
+        signUpButton.frame.size = CGSize(width: 100, height: 50)
+        signUpButton.backgroundColor = .red
+        signUpButton.setTitle("Sign Up", for: .normal)
+        
+        errorLabel.font = UIFont.systemFont(ofSize: 9, weight: .medium)
+        errorLabel.textColor = .red
+    }
+    
+    func configureLayout(){
+
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(logInButton)
         view.addSubview(signUpButton)
         view.addSubview(errorLabel)
-    }
-    
-    func configureLayout(){
-
+        
         emailTextField.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(view).offset(K.Offset.topComponent)
             make.centerX.equalTo(view)
@@ -81,15 +72,6 @@ class LogInVC: UIViewController, VCConfig{
         setConstraints(errorLabel, signUpButton, K.Offset.sm)
     }
     
-    func configureComponents(){
-        emailTextField.setText("Enter your email")
-        emailTextField.addBottomBorder()
-
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.setText("Enter your password")
-        passwordTextField.addBottomBorder()
-    }
-    
     func setConstraints(_ tf: ConstraintView, _ top: ConstraintView, _ offset: Int){
         tf.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(top.snp.bottom).offset(offset)
@@ -100,8 +82,6 @@ class LogInVC: UIViewController, VCConfig{
     
     @objc func loginTapped(_ sender: Any){
         //TODO : Validate text fields
-        
-        
         
         //Create cleaned versions of the text fields
 //        let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)

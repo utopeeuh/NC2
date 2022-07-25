@@ -8,7 +8,6 @@
 import UIKit
 
 protocol VCConfig {
-    func addComponents()
-    func configureLayout()
     func configureComponents()
+    func configureLayout()
 }

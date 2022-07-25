@@ -54,7 +54,7 @@ class HomeVC: UIViewController {
     }
     
     @objc func addBigTaskTapped(_ sender: Any){
-        let vc = scene.addBigTaskVC
+        let vc = AddBigTaskVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

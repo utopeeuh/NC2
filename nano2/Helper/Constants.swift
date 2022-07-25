@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 struct K {
-    
     struct Offset {
         static let topComponent = 100
         static let lg = 28

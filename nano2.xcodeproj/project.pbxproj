@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950D8C33288E37FE00BAB304 /* LittleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C32288E37FE00BAB304 /* LittleTask.swift */; };
+		950D8C35288E384300BAB304 /* StatusTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C34288E384300BAB304 /* StatusTask.swift */; };
+		950D8C38288E3B0600BAB304 /* BigTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C37288E3B0600BAB304 /* BigTask.swift */; };
+		950D8C3A288E401E00BAB304 /* AddLittleTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C39288E401E00BAB304 /* AddLittleTaskVC.swift */; };
+		950D8C41288E90A100BAB304 /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C40288E90A100BAB304 /* FirestoreHelper.swift */; };
+		950D8C43288E90BA00BAB304 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C42288E90BA00BAB304 /* Repository.swift */; };
 		9524B7A1288D8F3400CA5FF1 /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524B7A0288D8F3400CA5FF1 /* SceneController.swift */; };
 		9524B7A3288D98C400CA5FF1 /* AddBigTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */; };
 		9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554C29A288A5127003CF7CA /* AppDelegate.swift */; };
@@ -34,6 +40,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		950D8C32288E37FE00BAB304 /* LittleTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleTask.swift; sourceTree = "<group>"; };
+		950D8C34288E384300BAB304 /* StatusTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTask.swift; sourceTree = "<group>"; };
+		950D8C37288E3B0600BAB304 /* BigTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTask.swift; sourceTree = "<group>"; };
+		950D8C39288E401E00BAB304 /* AddLittleTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLittleTaskVC.swift; sourceTree = "<group>"; };
+		950D8C40288E90A100BAB304 /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
+		950D8C42288E90BA00BAB304 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		9524B7A0288D8F3400CA5FF1 /* SceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBigTaskVC.swift; sourceTree = "<group>"; };
 		9554C297288A5127003CF7CA /* nano2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nano2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +85,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		950D8C36288E3AF100BAB304 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				950D8C34288E384300BAB304 /* StatusTask.swift */,
+				950D8C32288E37FE00BAB304 /* LittleTask.swift */,
+				950D8C37288E3B0600BAB304 /* BigTask.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		950D8C3B288E402B00BAB304 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9524B7A0288D8F3400CA5FF1 /* SceneController.swift */,
+				9554C29E288A5127003CF7CA /* HomeVC.swift */,
+				9524B7A4288D9A5300CA5FF1 /* Auth */,
+				950D8C3C288E403300BAB304 /* Tasks */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		950D8C3C288E403300BAB304 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */,
+				950D8C39288E401E00BAB304 /* AddLittleTaskVC.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		950D8C3F288E904F00BAB304 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				950D8C40288E90A100BAB304 /* FirestoreHelper.swift */,
+				950D8C42288E90BA00BAB304 /* Repository.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		9524B7A4288D9A5300CA5FF1 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +145,6 @@
 		9554C28E288A5127003CF7CA = {
 			isa = PBXGroup;
 			children = (
-				95BC5820288DAE3900FA16B9 /* Helper */,
 				9554C299288A5127003CF7CA /* nano2 */,
 				9554C298288A5127003CF7CA /* Products */,
 			);
@@ -113,11 +163,11 @@
 			children = (
 				9554C29A288A5127003CF7CA /* AppDelegate.swift */,
 				9554C29C288A5127003CF7CA /* SceneDelegate.swift */,
-				9524B7A0288D8F3400CA5FF1 /* SceneController.swift */,
-				9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */,
-				9554C29E288A5127003CF7CA /* HomeVC.swift */,
-				9524B7A4288D9A5300CA5FF1 /* Auth */,
+				950D8C3F288E904F00BAB304 /* Firebase */,
+				950D8C3B288E402B00BAB304 /* Views */,
+				950D8C36288E3AF100BAB304 /* Models */,
 				9524B7A5288D9A6500CA5FF1 /* Components */,
+				95BC5820288DAE3900FA16B9 /* Helper */,
 				9554C2A6288A512A003CF7CA /* Assets.xcassets */,
 				9554C2A8288A512A003CF7CA /* LaunchScreen.storyboard */,
 				9554C2AB288A512A003CF7CA /* Info.plist */,
@@ -225,17 +275,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				95BC5824288DBEB300FA16B9 /* VCConfig.swift in Sources */,
+				950D8C41288E90A100BAB304 /* FirestoreHelper.swift in Sources */,
 				9524B7A1288D8F3400CA5FF1 /* SceneController.swift in Sources */,
 				95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */,
+				950D8C3A288E401E00BAB304 /* AddLittleTaskVC.swift in Sources */,
 				9554C2A5288A5127003CF7CA /* nano2.xcdatamodeld in Sources */,
 				9554C29F288A5127003CF7CA /* HomeVC.swift in Sources */,
 				95811498288BB07F000C627F /* LogInVC.swift in Sources */,
+				950D8C38288E3B0600BAB304 /* BigTask.swift in Sources */,
+				950D8C35288E384300BAB304 /* StatusTask.swift in Sources */,
 				9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */,
 				9581149E288BB2C7000C627F /* GradientButton.swift in Sources */,
 				9554C29D288A5127003CF7CA /* SceneDelegate.swift in Sources */,
 				9581149C288BB175000C627F /* Textfield.swift in Sources */,
+				950D8C33288E37FE00BAB304 /* LittleTask.swift in Sources */,
 				9524B7A3288D98C400CA5FF1 /* AddBigTaskVC.swift in Sources */,
 				95811491288BAF79000C627F /* SignUpVC.swift in Sources */,
+				950D8C43288E90BA00BAB304 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

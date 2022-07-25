@@ -5,34 +5,12 @@ import SnapKit
 
 class SignUpVC: UIViewController, VCConfig {
 
-    var emailTextField : Textfield!
-    var usernameTextField : Textfield!
-    var passwordTextField : Textfield!
-    
-    let signUpButton : UIButton = {
-        let button = UIButton()
-        button.frame.size = CGSize(width: 100, height: 50)
-        button.backgroundColor = .red
-        button.setTitle("Sign Up", for: .normal)
-        
-        return button
-    }()
-    
-    let logInButton : UIButton = {
-        let button = UIButton()
-        button.frame.size = CGSize(width: 100, height: 50)
-        button.backgroundColor = .green
-        button.setTitle("Log In", for: .normal)
-        
-        return button
-    }()
-
-    let errorLabel : UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 9, weight: .medium)
-        label.textColor = .red
-        return label
-    }()
+    var emailTextField = Textfield()
+    var usernameTextField = Textfield()
+    var passwordTextField = Textfield()
+    let signUpButton = UIButton()
+    let logInButton = UIButton()
+    let errorLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,22 +19,41 @@ class SignUpVC: UIViewController, VCConfig {
         
         view.backgroundColor = .white
         
-        addComponents()
-        configureLayout()
         configureComponents()
+        configureLayout()
     }
     
-    func addComponents() {
-        emailTextField = Textfield()
-        usernameTextField = Textfield()
-        passwordTextField = Textfield()
-        
+    func configureComponents() {
         view.addSubview(emailTextField)
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(signUpButton)
         view.addSubview(logInButton)
         view.addSubview(errorLabel)
+        
+        signUpButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
+        logInButton.addTarget(self, action: #selector(logInTapped), for: .touchUpInside)
+        
+        emailTextField.setText("Enter your email")
+        emailTextField.addBottomBorder()
+        
+        usernameTextField.setText("Enter your email")
+        usernameTextField.addBottomBorder()
+
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.setText("Enter your password")
+        passwordTextField.addBottomBorder()
+        
+        signUpButton.frame.size = CGSize(width: 100, height: 50)
+        signUpButton.backgroundColor = .red
+        signUpButton.setTitle("Sign Up", for: .normal)
+        
+        logInButton.frame.size = CGSize(width: 100, height: 50)
+        logInButton.backgroundColor = .red
+        logInButton.setTitle("Log In", for: .normal)
+        
+        errorLabel.font = UIFont.systemFont(ofSize: 9, weight: .medium)
+        errorLabel.textColor = .red
     }
     
     func configureLayout() {
@@ -71,21 +68,6 @@ class SignUpVC: UIViewController, VCConfig {
         setConstraints(signUpButton, passwordTextField, K.Offset.lg)
         setConstraints(logInButton, signUpButton, K.Offset.md)
         setConstraints(errorLabel, logInButton, K.Offset.sm)
-    }
-    
-    func configureComponents() {
-        signUpButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
-        logInButton.addTarget(self, action: #selector(logInTapped), for: .touchUpInside)
-        
-        emailTextField.setText("Enter your email")
-        emailTextField.addBottomBorder()
-        
-        usernameTextField.setText("Enter your email")
-        usernameTextField.addBottomBorder()
-
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.setText("Enter your password")
-        passwordTextField.addBottomBorder()
     }
     
     func setConstraints(_ tf: ConstraintView, _ top: ConstraintView, _ offset: Int){
