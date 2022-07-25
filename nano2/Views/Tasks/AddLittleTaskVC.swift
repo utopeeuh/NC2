@@ -73,7 +73,7 @@ class AddLittleTaskVC: UIViewController, VCConfig{
             let title = titleField.text!
             let goals = goalsField.text!
             
-            let newLittleTask = LittleTask(title, goals, StatusTask.preview)
+            let newLittleTask = LittleTask(title, goals)
             self.navigationController?.popViewController(animated: true)
             completion!(newLittleTask)
         }

@@ -24,8 +24,6 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.navigationItem.setHidesBackButton(true, animated: true)
-        
         view.backgroundColor = .yellow
     
         view.addSubview(momoImageView)
@@ -55,8 +53,8 @@ class HomeVC: UIViewController {
     
     @objc func addBigTaskTapped(_ sender: Any){
         let vc = AddBigTaskVC()
+        vc.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
 }
 

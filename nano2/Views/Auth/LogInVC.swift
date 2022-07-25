@@ -100,7 +100,7 @@ class LogInVC: UIViewController, VCConfig{
                 
             } else{
                 print("Logged in")
-                let vc = scene.homeVC
+                let vc = scene.tabBar
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

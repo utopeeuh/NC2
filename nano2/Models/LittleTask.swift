@@ -11,11 +11,11 @@ import UIKit
 class LittleTask {
     var title: String!
     var goals: String!
-    var status: String!
+    var status: Int!
     
-    init(_ title: String, _ goals: String, _ status: String){
+    init(_ title: String, _ goals: String){
         self.title = title
         self.goals = goals
-        self.status = status
+        self.status = K.StatusTask.notStarted
     }
 }

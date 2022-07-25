@@ -14,13 +14,14 @@ class SceneController{
     
     let signupVC : UIViewController
     let loginVC : UIViewController
-    let homeVC : UIViewController
-    let addBigTaskVC : UIViewController
+    let tabBar : UITabBarController
     
     init(){
         signupVC = SignUpVC()
         loginVC = LogInVC()
-        homeVC = HomeVC()
-        addBigTaskVC = AddBigTaskVC()
+        tabBar = TabBarController()
+
+        tabBar.selectedIndex = 1
+        tabBar.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }

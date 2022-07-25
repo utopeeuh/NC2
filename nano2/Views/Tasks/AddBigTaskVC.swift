@@ -47,7 +47,7 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         littleTaskTable.dataSource = self
         littleTaskTable.delegate = self
         littleTaskTable.backgroundColor = .white
-        littleTaskTable.register(UITableViewCell.self, forCellReuseIdentifier: "littleTaskCell")
+        littleTaskTable.register(LittleTaskCell.self, forCellReuseIdentifier: "littleTaskCell")
         
         saveButton.frame.size = CGSize(width: 100, height: 50)
         saveButton.backgroundColor = .red
@@ -97,17 +97,19 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     // MARK: - Setup Table
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(littleTasks.count)
         return littleTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = littleTaskTable.dequeueReusableCell(withIdentifier: "littleTaskCell", for: indexPath)
-        let currTask = littleTasks[indexPath.row]
-    
-        cell.textLabel?.text = currTask.title
+        let cell = littleTaskTable.dequeueReusableCell(withIdentifier: "littleTaskCell", for: indexPath) as! LittleTaskCell
+        
+        cell.setTask(littleTasks[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
     }
     
     @objc func addLittleTask(){
@@ -116,7 +118,6 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         vc.completion = {
             newTask in
             self.littleTasks.append(newTask)
-            print("Added little task")
             self.littleTaskTable.delegate = self
             self.littleTaskTable.dataSource = self
             self.littleTaskTable.reloadData()
