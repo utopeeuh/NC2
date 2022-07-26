@@ -13,10 +13,10 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     
     var bigTitle = Textfield()
     var addRowButton = UIButton()
-    var littleTaskTable = UITableView()
+    var taskTable = UITableView()
     var saveButton = UIButton()
     
-    var littleTasks : [LittleTask] = []
+    var tasks : [Task] = []
     
     @objc func backAction(){
         self.navigationController?.popViewController(animated: true)
@@ -42,12 +42,12 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         addRowButton.frame.size = CGSize(width: 100, height: 50)
         addRowButton.backgroundColor = .red
         addRowButton.setTitle("Add", for: .normal)
-        addRowButton.addTarget(self, action: #selector(addLittleTask), for: .touchUpInside)
+        addRowButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
         
-        littleTaskTable.dataSource = self
-        littleTaskTable.delegate = self
-        littleTaskTable.backgroundColor = .white
-        littleTaskTable.register(LittleTaskCell.self, forCellReuseIdentifier: "littleTaskCell")
+        taskTable.dataSource = self
+        taskTable.delegate = self
+        taskTable.backgroundColor = .white
+        taskTable.register(TaskCell.self, forCellReuseIdentifier: "taskCell")
         
         saveButton.frame.size = CGSize(width: 100, height: 50)
         saveButton.backgroundColor = .red
@@ -65,7 +65,7 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     func configureLayout() {
         view.addSubview(bigTitle)
         view.addSubview(addRowButton)
-        view.addSubview(littleTaskTable)
+        view.addSubview(taskTable)
         view.addSubview(saveButton)
         
         bigTitle.snp.makeConstraints{(make) -> Void in
@@ -80,14 +80,14 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
             make.centerX.equalToSuperview()
         }
         
-        littleTaskTable.snp.makeConstraints{ (make) -> Void in
+        taskTable.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(addRowButton.snp.bottom).offset(K.Offset.lg)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
         
         saveButton.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(littleTaskTable.snp.bottom).offset(K.Offset.lg)
+            make.top.equalTo(taskTable.snp.bottom).offset(K.Offset.lg)
             make.width.equalToSuperview().offset(-K.Offset.width)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-K.Offset.lg)
@@ -97,13 +97,13 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     // MARK: - Setup Table
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return littleTasks.count
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = littleTaskTable.dequeueReusableCell(withIdentifier: "littleTaskCell", for: indexPath) as! LittleTaskCell
+        let cell = taskTable.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         
-        cell.setTask(littleTasks[indexPath.row])
+        cell.setTask(tasks[indexPath.row])
         
         return cell
     }
@@ -112,17 +112,17 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         return 90
     }
     
-    @objc func addLittleTask(){
-        let vc = AddLittleTaskVC()
+    @objc func addTask(){
+        let vc = AddTaskVC()
 
         vc.completion = {
             newTask in
-            self.littleTasks.append(newTask)
-            self.littleTaskTable.delegate = self
-            self.littleTaskTable.dataSource = self
-            self.littleTaskTable.reloadData()
+            self.tasks.append(newTask)
+            self.taskTable.delegate = self
+            self.taskTable.dataSource = self
+            self.taskTable.reloadData()
 
-            print(self.littleTasks.count)
+            print(self.tasks.count)
         }
         navigationController?.pushViewController(vc, animated: true)
     }

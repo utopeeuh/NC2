@@ -22,13 +22,13 @@ class FirestoreHelper {
     let db = Firestore.firestore()
     var rootUsers: CollectionReference
     var rootBigTask: CollectionReference
-    var rootLittleTask: CollectionReference
+    var rootTask: CollectionReference
     
     init(){
         Firestore.firestore().settings = settings
         rootUsers = db.collection("users")
-        rootBigTask = db.collection("bigTasks")
-        rootLittleTask = db.collection("lilTasks")
+        rootBigTask = db.collection("big_tasks")
+        rootTask = db.collection("tasks")
     }
 
 }

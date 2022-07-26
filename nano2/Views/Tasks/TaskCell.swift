@@ -1,5 +1,5 @@
 //
-//  LittleTaskCell.swift
+//  TaskCell.swift
 //  nano2
 //
 //  Created by Tb. Daffa Amadeo Zhafrana on 25/07/22.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class LittleTaskCell: UITableViewCell{
+class TaskCell: UITableViewCell{
     
     var titleLabel = UILabel()
     var progressLabel = UILabel()
@@ -53,7 +53,7 @@ class LittleTaskCell: UITableViewCell{
         }
     }
     
-    func setTask(_ task: LittleTask){
+    func setTask(_ task: Task){
         titleLabel.text = task.title
         progressLabel.text = "Current progress: \(convertStatus(task.status ?? 0))"
     }

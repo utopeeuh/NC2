@@ -1,5 +1,5 @@
 //
-//  AddLittleTaskVC.swift
+//  AddTaskVC.swift
 //  nano2
 //
 //  Created by Tb. Daffa Amadeo Zhafrana on 25/07/22.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class AddLittleTaskVC: UIViewController, VCConfig{
+class AddTaskVC: UIViewController, VCConfig{
 
     var titleField: Textfield!
     var goalsField: Textfield!
     var saveButton: UIButton!
     
-    public var completion: ((LittleTask) -> Void)?
+    public var completion: ((Task) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,9 +73,9 @@ class AddLittleTaskVC: UIViewController, VCConfig{
             let title = titleField.text!
             let goals = goalsField.text!
             
-            let newLittleTask = LittleTask(title, goals)
+            let newTask = Task(title, goals)
             self.navigationController?.popViewController(animated: true)
-            completion!(newLittleTask)
+            completion!(newTask)
         }
     }
 }

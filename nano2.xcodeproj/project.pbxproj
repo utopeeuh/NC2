@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		950D8C33288E37FE00BAB304 /* LittleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C32288E37FE00BAB304 /* LittleTask.swift */; };
+		950D8C33288E37FE00BAB304 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C32288E37FE00BAB304 /* Task.swift */; };
 		950D8C38288E3B0600BAB304 /* BigTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C37288E3B0600BAB304 /* BigTask.swift */; };
-		950D8C3A288E401E00BAB304 /* AddLittleTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C39288E401E00BAB304 /* AddLittleTaskVC.swift */; };
+		950D8C3A288E401E00BAB304 /* AddTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C39288E401E00BAB304 /* AddTaskVC.swift */; };
 		950D8C41288E90A100BAB304 /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C40288E90A100BAB304 /* FirestoreHelper.swift */; };
 		950D8C43288E90BA00BAB304 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C42288E90BA00BAB304 /* Repository.swift */; };
+		95225463288FD09C00A811CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95225462288FD09C00A811CC /* User.swift */; };
 		9524B7A1288D8F3400CA5FF1 /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524B7A0288D8F3400CA5FF1 /* SceneController.swift */; };
 		9524B7A3288D98C400CA5FF1 /* AddBigTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */; };
 		9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554C29A288A5127003CF7CA /* AppDelegate.swift */; };
@@ -34,18 +35,19 @@
 		95811498288BB07F000C627F /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95811496288BB07F000C627F /* LogInVC.swift */; };
 		9581149C288BB175000C627F /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581149B288BB175000C627F /* Textfield.swift */; };
 		9581149E288BB2C7000C627F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581149D288BB2C7000C627F /* GradientButton.swift */; };
-		959E2A8A288EEC5200E0DA3B /* LittleTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E2A89288EEC5200E0DA3B /* LittleTaskCell.swift */; };
+		959E2A8A288EEC5200E0DA3B /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E2A89288EEC5200E0DA3B /* TaskCell.swift */; };
 		959E2A8C288EFADB00E0DA3B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E2A8B288EFADB00E0DA3B /* TabBarController.swift */; };
 		95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC5821288DAE4400FA16B9 /* Constants.swift */; };
 		95BC5824288DBEB300FA16B9 /* VCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC5823288DBEB300FA16B9 /* VCConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		950D8C32288E37FE00BAB304 /* LittleTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleTask.swift; sourceTree = "<group>"; };
+		950D8C32288E37FE00BAB304 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		950D8C37288E3B0600BAB304 /* BigTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTask.swift; sourceTree = "<group>"; };
-		950D8C39288E401E00BAB304 /* AddLittleTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLittleTaskVC.swift; sourceTree = "<group>"; };
+		950D8C39288E401E00BAB304 /* AddTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskVC.swift; sourceTree = "<group>"; };
 		950D8C40288E90A100BAB304 /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 		950D8C42288E90BA00BAB304 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		95225462288FD09C00A811CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9524B7A0288D8F3400CA5FF1 /* SceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBigTaskVC.swift; sourceTree = "<group>"; };
 		9554C297288A5127003CF7CA /* nano2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nano2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +63,7 @@
 		95811496288BB07F000C627F /* LogInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		9581149B288BB175000C627F /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		9581149D288BB2C7000C627F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
-		959E2A89288EEC5200E0DA3B /* LittleTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleTaskCell.swift; sourceTree = "<group>"; };
+		959E2A89288EEC5200E0DA3B /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		959E2A8B288EFADB00E0DA3B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		95BC5821288DAE4400FA16B9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95BC5823288DBEB300FA16B9 /* VCConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCConfig.swift; sourceTree = "<group>"; };
@@ -90,8 +92,9 @@
 		950D8C36288E3AF100BAB304 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				950D8C32288E37FE00BAB304 /* LittleTask.swift */,
+				950D8C32288E37FE00BAB304 /* Task.swift */,
 				950D8C37288E3B0600BAB304 /* BigTask.swift */,
+				95225462288FD09C00A811CC /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -112,8 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */,
-				950D8C39288E401E00BAB304 /* AddLittleTaskVC.swift */,
-				959E2A89288EEC5200E0DA3B /* LittleTaskCell.swift */,
+				950D8C39288E401E00BAB304 /* AddTaskVC.swift */,
+				959E2A89288EEC5200E0DA3B /* TaskCell.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -281,18 +284,19 @@
 				950D8C41288E90A100BAB304 /* FirestoreHelper.swift in Sources */,
 				9524B7A1288D8F3400CA5FF1 /* SceneController.swift in Sources */,
 				95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */,
-				950D8C3A288E401E00BAB304 /* AddLittleTaskVC.swift in Sources */,
+				950D8C3A288E401E00BAB304 /* AddTaskVC.swift in Sources */,
 				9554C2A5288A5127003CF7CA /* nano2.xcdatamodeld in Sources */,
 				9554C29F288A5127003CF7CA /* HomeVC.swift in Sources */,
 				95811498288BB07F000C627F /* LogInVC.swift in Sources */,
-				959E2A8A288EEC5200E0DA3B /* LittleTaskCell.swift in Sources */,
+				95225463288FD09C00A811CC /* User.swift in Sources */,
+				959E2A8A288EEC5200E0DA3B /* TaskCell.swift in Sources */,
 				950D8C38288E3B0600BAB304 /* BigTask.swift in Sources */,
 				959E2A8C288EFADB00E0DA3B /* TabBarController.swift in Sources */,
 				9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */,
 				9581149E288BB2C7000C627F /* GradientButton.swift in Sources */,
 				9554C29D288A5127003CF7CA /* SceneDelegate.swift in Sources */,
 				9581149C288BB175000C627F /* Textfield.swift in Sources */,
-				950D8C33288E37FE00BAB304 /* LittleTask.swift in Sources */,
+				950D8C33288E37FE00BAB304 /* Task.swift in Sources */,
 				9524B7A3288D98C400CA5FF1 /* AddBigTaskVC.swift in Sources */,
 				95811491288BAF79000C627F /* SignUpVC.swift in Sources */,
 				950D8C43288E90BA00BAB304 /* Repository.swift in Sources */,
