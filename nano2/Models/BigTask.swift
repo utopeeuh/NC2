@@ -13,13 +13,14 @@ class BigTask{
     var title: String!
     var tasks: [Task] = []
     var isDone: Bool!
-    var dateCompleted: Date?
+    var dateCompleted: Date!
     var dateCreated: Date!
     
-    init(_ title: String, _ tasks: [Task], isDone: Bool) {
+    init(_ title: String, _ tasks: [Task]) {
         self.title = title
         self.tasks = tasks
-        self.isDone = isDone
+        self.isDone = false
+        self.dateCompleted = Date.now
         self.dateCreated = Date.now
     }
     

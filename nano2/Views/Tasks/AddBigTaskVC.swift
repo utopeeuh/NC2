@@ -57,7 +57,8 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     
     @objc func saveButtonTapped(){
         //save to firebase
-        
+        let newBigTask = BigTask(bigTitle.text!, tasks)
+        taskRepo.createTask(newBigTask)
         // pop vc
         self.navigationController?.popViewController(animated: true)
     }

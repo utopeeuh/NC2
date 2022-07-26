@@ -21,7 +21,7 @@ class SceneController{
         loginVC = LogInVC()
         tabBar = TabBarController()
 
-        tabBar.selectedIndex = 1
+        tabBar.selectedIndex = 0
         tabBar.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }

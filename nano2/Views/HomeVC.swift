@@ -23,7 +23,21 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        showSpinner(onView: self.view)
+        let group = DispatchGroup()
+        group.enter()
+        
+        userRepo.fetchUser {
+            group.leave()
+        }
+        
+        group.notify(queue: .main){
+            self.removeSpinner()
+        }
+        
+        // Configure view
+        
         view.backgroundColor = .yellow
     
         view.addSubview(momoImageView)

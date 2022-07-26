@@ -13,9 +13,8 @@
 		950D8C41288E90A100BAB304 /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C40288E90A100BAB304 /* FirestoreHelper.swift */; };
 		950D8C43288E90BA00BAB304 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D8C42288E90BA00BAB304 /* Repository.swift */; };
 		95225463288FD09C00A811CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95225462288FD09C00A811CC /* User.swift */; };
-		95225465288FD94500A811CC /* BigTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95225464288FD94500A811CC /* BigTaskRepository.swift */; };
+		95225465288FD94500A811CC /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95225464288FD94500A811CC /* TaskRepository.swift */; };
 		95225467288FD9A800A811CC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95225466288FD9A800A811CC /* UserRepository.swift */; };
-		95225469288FDA0400A811CC /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95225468288FDA0400A811CC /* TaskRepository.swift */; };
 		9522546F288FDA8D00A811CC /* UIViewController+LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9522546A288FDA8D00A811CC /* UIViewController+LoadingSpinner.swift */; };
 		95225470288FDA8D00A811CC /* iOSDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9522546B288FDA8D00A811CC /* iOSDropDown.swift */; };
 		95225471288FDA8D00A811CC /* Date+DateComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9522546C288FDA8D00A811CC /* Date+DateComparison.swift */; };
@@ -56,9 +55,8 @@
 		950D8C40288E90A100BAB304 /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 		950D8C42288E90BA00BAB304 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		95225462288FD09C00A811CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		95225464288FD94500A811CC /* BigTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTaskRepository.swift; sourceTree = "<group>"; };
+		95225464288FD94500A811CC /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		95225466288FD9A800A811CC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		95225468288FDA0400A811CC /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		9522546A288FDA8D00A811CC /* UIViewController+LoadingSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+LoadingSpinner.swift"; sourceTree = "<group>"; };
 		9522546B288FDA8D00A811CC /* iOSDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDropDown.swift; sourceTree = "<group>"; };
 		9522546C288FDA8D00A811CC /* Date+DateComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DateComparison.swift"; sourceTree = "<group>"; };
@@ -142,9 +140,8 @@
 			children = (
 				950D8C40288E90A100BAB304 /* FirestoreHelper.swift */,
 				950D8C42288E90BA00BAB304 /* Repository.swift */,
-				95225464288FD94500A811CC /* BigTaskRepository.swift */,
+				95225464288FD94500A811CC /* TaskRepository.swift */,
 				95225466288FD9A800A811CC /* UserRepository.swift */,
-				95225468288FDA0400A811CC /* TaskRepository.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -309,7 +306,7 @@
 				950D8C41288E90A100BAB304 /* FirestoreHelper.swift in Sources */,
 				9524B7A1288D8F3400CA5FF1 /* SceneController.swift in Sources */,
 				95225471288FDA8D00A811CC /* Date+DateComparison.swift in Sources */,
-				95225465288FD94500A811CC /* BigTaskRepository.swift in Sources */,
+				95225465288FD94500A811CC /* TaskRepository.swift in Sources */,
 				95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */,
 				950D8C3A288E401E00BAB304 /* AddTaskVC.swift in Sources */,
 				9554C2A5288A5127003CF7CA /* nano2.xcdatamodeld in Sources */,
@@ -321,7 +318,6 @@
 				950D8C38288E3B0600BAB304 /* BigTask.swift in Sources */,
 				9522546F288FDA8D00A811CC /* UIViewController+LoadingSpinner.swift in Sources */,
 				959E2A8C288EFADB00E0DA3B /* TabBarController.swift in Sources */,
-				95225469288FDA0400A811CC /* TaskRepository.swift in Sources */,
 				9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */,
 				95225470288FDA8D00A811CC /* iOSDropDown.swift in Sources */,
 				95225473288FDA8D00A811CC /* UIView+Fade.swift in Sources */,

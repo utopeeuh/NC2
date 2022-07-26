@@ -13,13 +13,15 @@ class User{
     var email: String!
     var username: String!
     var xp: Int!
+    var bigTasks: [BigTask]!
     var friends: [User]!
     
-    init(id: String, email: String, username: String, xp: Int, friends: [User]) {
+    init(id: String, email: String, username: String, xp: Int, bigTasks: [BigTask], friends: [User]) {
         self.id = id
         self.email = email
         self.username = username
         self.xp = xp
+        self.bigTasks = bigTasks
         self.friends = friends
     }
 }
