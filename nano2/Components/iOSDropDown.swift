@@ -12,6 +12,17 @@ open class DropDown: UITextField {
     var table: UITableView!
     var shadow: UIView!
     public var selectedIndex: Int?
+    
+    // MARK: Add bottom border
+    
+    func addBottomBorder(){
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0, y: 60 - Double(K.Offset.lg), width: UIScreen.main.bounds.width-Double(K.Offset.width), height: 1)
+        bottomLine.backgroundColor = UIColor.init(red: 197/255, green: 199/255, blue: 196/255, alpha: 1).cgColor
+    
+        self.borderStyle = .none
+        self.layer.addSublayer(bottomLine)
+    }
 
     // MARK: IBInspectable
 

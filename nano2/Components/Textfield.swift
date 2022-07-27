@@ -41,7 +41,7 @@ class Textfield: UITextField {
     func addBottomBorder(){
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: height - Double(K.Offset.lg), width: UIScreen.main.bounds.width-Double(K.Offset.width), height: 1)
-        bottomLine.backgroundColor = UIColor.red.cgColor
+        bottomLine.backgroundColor = UIColor.init(red: 197/255, green: 199/255, blue: 196/255, alpha: 1).cgColor
     
         self.borderStyle = .none
         self.layer.addSublayer(bottomLine)

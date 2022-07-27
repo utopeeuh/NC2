@@ -11,6 +11,8 @@ import SnapKit
 class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataSource{
     
     private var bigTaskTable = UITableView()
+    private var userLabel = UILabel()
+    private var seperatorLabel = UILabel()
     private var vstack = UIStackView()
     private let cellIdentifier = "bigTaskCell"
     
@@ -32,6 +34,7 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
         
         group.notify(queue: .main){ [self] in
             removeSpinner()
+            userLabel.text = "Welcome back, " + (currentUser?.username ?? "User")
             bigTaskTable.reloadData()
         }
     }
@@ -39,31 +42,38 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
     func configureComponents() {
         
         vstack.axis = .vertical
-        vstack.distribution = .equalSpacing
         vstack.alignment = .fill
-        vstack.spacing = 8
+        vstack.spacing = K.Spacing.md
+        
+        userLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .bold)
+        userLabel.textColor = .black
+        
+        seperatorLabel.text = "Currently Learning"
+        seperatorLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .bold)
+        seperatorLabel.textColor = .black
         
         bigTaskTable.delegate = self
         bigTaskTable.dataSource = self
         bigTaskTable.backgroundColor = .white
         bigTaskTable.register(TaskCell.self, forCellReuseIdentifier: cellIdentifier)
         
+        vstack.addArrangedSubview(userLabel)
+        vstack.addArrangedSubview(seperatorLabel)
         vstack.addArrangedSubview(bigTaskTable)
         vstack.translatesAutoresizingMaskIntoConstraints = false
         
         let addBigTask = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addBigTaskTapped))
         navigationItem.rightBarButtonItem = addBigTask
-        
     }
     
     func configureLayout() {
         view.addSubview(vstack)
-        
+
         vstack.snp.makeConstraints{ (make) -> Void in
-            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(K.Offset.md)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.md)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(K.Offset.md)
+            make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.md)
         }
+        
     }
 
     @objc func addBigTaskTapped(_ sender: Any){

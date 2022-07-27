@@ -11,10 +11,18 @@ import UIKit
 
 class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableViewDataSource{
     
+    private var bigTitleLabel = TextFieldLabel()
     private var bigTitle = Textfield()
-    private var addRowButton = UIButton()
+    
+    private var seperatorText = UILabel()
+    private var seperatorStack = UIStackView()
+    private var addRowButton = TextButton()
+    
+    private var taskDescLabel = UILabel()
     private var taskTable = UITableView()
-    private var saveButton = UIButton()
+    private var saveButton = Button()
+    private var vstack = UIStackView()
+    
     public var saveCompletion : (() -> Void)?
     
     private var tasks : [Task] = []
@@ -22,6 +30,7 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Create a plan"
         view.backgroundColor = .systemBackground
         
         configureComponents()
@@ -33,23 +42,55 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     }
     
     func configureComponents() {
-        bigTitle.setText("Enter big title")
+        vstack.axis = .vertical
+        vstack.alignment = .fill
+        vstack.spacing = K.Spacing.sm
+        
+        bigTitleLabel.setText("title")
+
+        bigTitle.setText("What do you want to learn?")
         bigTitle.addBottomBorder()
         
-        addRowButton.frame.size = CGSize(width: 100, height: 50)
-        addRowButton.backgroundColor = .red
-        addRowButton.setTitle("Add", for: .normal)
+        seperatorStack.axis = .horizontal
+        seperatorStack.alignment = .fill
+        seperatorStack.distribution = .equalSpacing
+        seperatorStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        seperatorText.text = "Let's break it down"
+        seperatorText.font = UIFont.systemFont(ofSize: K.FontSize.lg, weight: .bold)
+        
+        addRowButton.setTitle("Add skill", for: .normal)
         addRowButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
         
+        seperatorStack.addArrangedSubview(seperatorText)
+        seperatorStack.addArrangedSubview(addRowButton)
+        
+        taskDescLabel.text = "For example, if your plan is to learn how to cook, then you can break it down into different skills like cutting, frying, etc."
+        taskDescLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .light)
+        taskDescLabel.textColor = .systemGray2
+        taskDescLabel.numberOfLines = 3
+        taskDescLabel.lineBreakMode = .byWordWrapping
+        taskDescLabel.sizeToFit()
+        
+        taskTable.backgroundColor = .white
         taskTable.dataSource = self
         taskTable.delegate = self
-        taskTable.backgroundColor = .white
         taskTable.register(TaskCell.self, forCellReuseIdentifier: "taskCell")
+        taskTable.separatorStyle = .none
         
-        saveButton.frame.size = CGSize(width: 100, height: 50)
-        saveButton.backgroundColor = .red
         saveButton.setTitle("Save", for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        
+        vstack.addArrangedSubview(bigTitleLabel)
+        vstack.addArrangedSubview(bigTitle)
+        vstack.addArrangedSubview(seperatorStack)
+        vstack.addArrangedSubview(taskDescLabel)
+        vstack.addArrangedSubview(taskTable)
+        vstack.addArrangedSubview(saveButton)
+        
+        vstack.translatesAutoresizingMaskIntoConstraints = false
+        
+        vstack.setCustomSpacing(K.Spacing.lg, after: bigTitle)
     }
     
     @objc func saveButtonTapped(){
@@ -62,48 +103,57 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     }
     
     func configureLayout() {
-        view.addSubview(bigTitle)
-        view.addSubview(addRowButton)
-        view.addSubview(taskTable)
-        view.addSubview(saveButton)
-        
-        bigTitle.snp.makeConstraints{(make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
+        view.addSubview(vstack)
+        vstack.snp.makeConstraints{ (make) -> Void in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(K.Offset.md)
+            make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.md)
         }
-        
-        addRowButton.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(bigTitle.snp.bottom).offset(K.Offset.lg)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
+    }
+    
+    @objc func addTask(){
+        let vc = AddTaskVC()
+
+        vc.completion = {[self] newTask in
+            tasks.append(newTask)
+            taskTable.reloadData()
         }
-        
-        taskTable.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(addRowButton.snp.bottom).offset(K.Offset.lg)
-            make.leading.equalTo(view.safeAreaLayoutGuide)
-            make.trailing.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        saveButton.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(taskTable.snp.bottom).offset(K.Offset.lg)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.lg)
-        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Setup Table
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return tasks.count
+    }
+    
+    // There is just one row in every section
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // if section has header text, bigger spacing
+        return 8
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: taskTable.frame.size.width, height: 10))
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTable.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         
-        cell.titleLabel.text = tasks[indexPath.row].title
-        cell.progressLabel.text = "Current progress: \(convertStatus(tasks[indexPath.row].status ?? 0))"
+        let currTask = tasks[(indexPath as NSIndexPath).section]
+        
+        cell.titleLabel.text = currTask.title
+        cell.progressLabel.text = "Current progress: \(convertStatus(currTask.status ?? 0))"
+        cell.setState(K.State.isCreating)
         
         return cell
     }
@@ -112,18 +162,8 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         return 90
     }
     
-    @objc func addTask(){
-        let vc = AddTaskVC()
-
-        vc.completion = {
-            newTask in
-            self.tasks.append(newTask)
-            self.taskTable.delegate = self
-            self.taskTable.dataSource = self
-            self.taskTable.reloadData()
-        }
-        navigationController?.pushViewController(vc, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // note that indexPath.section is used rather than indexPath.row
+        taskTable.deselectRow(at: indexPath, animated: true)
     }
-    
-    
 }

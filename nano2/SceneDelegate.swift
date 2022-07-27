@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let fir = LogInVC()
+        let fir = AddBigTaskVC()
         self.window?.rootViewController = UINavigationController(rootViewController: fir)
         window?.makeKeyAndVisible()
     }

@@ -11,18 +11,25 @@ import SnapKit
 
 class LogInVC: UIViewController, VCConfig{
     
-    var emailTextField = Textfield()
-    var passwordTextField = Textfield()
-    let logInButton = UIButton()
-    let signUpButton = UIButton()
-    let errorLabel = UILabel()
+    private let vstack = UIStackView()
+    
+    private let emailLabel = TextFieldLabel()
+    private let emailTextField = Textfield()
+    private let passwordLabel = TextFieldLabel()
+    private let passwordTextField = Textfield()
+    private let errorLabel = UILabel()
+    private let logInButton = Button()
+    private let signUpButton = Button()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Log in"
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.setHidesBackButton(true, animated: true)
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         configureComponents()
         configureLayout()
@@ -31,52 +38,53 @@ class LogInVC: UIViewController, VCConfig{
     }
     
     func configureComponents(){
+        
+        vstack.axis = .vertical
+        vstack.alignment = .fill
+        vstack.spacing = K.Spacing.sm
+        
+        emailLabel.setText("email")
         emailTextField.setText("Enter your email")
         emailTextField.addBottomBorder()
 
+        passwordLabel.setText("password")
         passwordTextField.isSecureTextEntry = true
         passwordTextField.setText("Enter your password")
         passwordTextField.addBottomBorder()
         
-        logInButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
-        logInButton.frame.size = CGSize(width: 100, height: 50)
-        logInButton.backgroundColor = .red
-        logInButton.setTitle("Log In", for: .normal)
-        
-        signUpButton.addTarget(self, action: #selector(signupTapped), for: .touchUpInside)
-        signUpButton.frame.size = CGSize(width: 100, height: 50)
-        signUpButton.backgroundColor = .red
-        signUpButton.setTitle("Sign Up", for: .normal)
-        
-        errorLabel.font = UIFont.systemFont(ofSize: 9, weight: .medium)
+        errorLabel.font = UIFont.systemFont(ofSize: K.FontSize.sm, weight: .medium)
         errorLabel.textColor = .red
+        
+        logInButton.setTitle("Log In", for: .normal)
+        logInButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+
+        signUpButton.setTitle("Sign Up", for: .normal)
+        signUpButton.invert()
+        signUpButton.addTarget(self, action: #selector(signupTapped), for: .touchUpInside)
+        
+        vstack.addArrangedSubview(emailLabel)
+        vstack.addArrangedSubview(emailTextField)
+        vstack.addArrangedSubview(passwordLabel)
+        vstack.addArrangedSubview(passwordTextField)
+        vstack.addArrangedSubview(errorLabel)
+        vstack.addArrangedSubview(logInButton)
+        vstack.addArrangedSubview(signUpButton)
+        vstack.addArrangedSubview(getEmptyView())
+        
+        vstack.translatesAutoresizingMaskIntoConstraints = false
+
+        vstack.setCustomSpacing(K.Spacing.lg, after: emailTextField)
+        vstack.setCustomSpacing(K.Spacing.lg, after: passwordTextField)
+        vstack.setCustomSpacing(K.Spacing.md, after: errorLabel)
     }
     
     func configureLayout(){
 
-        view.addSubview(emailTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(logInButton)
-        view.addSubview(signUpButton)
-        view.addSubview(errorLabel)
-        
-        emailTextField.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
-        }
-        
-        setConstraints(passwordTextField, emailTextField,K.Offset.lg)
-        setConstraints(logInButton, passwordTextField, K.Offset.lg)
-        setConstraints(signUpButton, logInButton, K.Offset.md)
-        setConstraints(errorLabel, signUpButton, K.Offset.sm)
-    }
-    
-    func setConstraints(_ tf: ConstraintView, _ top: ConstraintView, _ offset: Int){
-        tf.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(top.snp.bottom).offset(offset)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
+        view.addSubview(vstack)
+        vstack.snp.makeConstraints{ (make) -> Void in
+            make.centerX.equalTo(view)
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(K.Offset.md)
+            make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.md)
         }
     }
     

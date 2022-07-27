@@ -9,62 +9,92 @@ import UIKit
 
 class AddTaskVC: UIViewController, VCConfig{
 
-    var titleField: Textfield!
-    var goalsField: Textfield!
-    var saveButton: UIButton!
+    private var vstack = UIStackView()
+    private var titleLabel = TextFieldLabel()
+    private var titleField = Textfield()
+    private var goalsLabel = TextFieldLabel()
+    private var goalsField = Textfield()
+    private var progressLabel = TextFieldLabel()
+    private var progressDropDown = DropDown()
+    private var saveButton = Button()
+    
+    private var selectedProgress = 0
     
     public var completion: ((Task) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
-        
-        addComponents()
-        configureLayout()
+        title = "Create a skill"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .systemBackground
+    
         configureComponents()
-    }
-    
-    func addComponents() {
-        titleField = Textfield()
-        goalsField = Textfield()
-        saveButton = UIButton()
-        
-        view.addSubview(titleField)
-        view.addSubview(goalsField)
-        view.addSubview(saveButton)
-    }
-    
-    func configureLayout() {
-        titleField.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
-        }
-        
-        goalsField.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(titleField.snp.bottom).offset(K.Offset.lg)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
-        }
-        
-        saveButton.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(goalsField.snp.bottom).offset(K.Offset.lg)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
-        }
+        configureLayout()
     }
     
     func configureComponents() {
-        titleField.setText("Enter title")
+        
+        vstack.axis = .vertical
+        vstack.alignment = .fill
+        vstack.spacing = K.Spacing.sm
+        
+        titleLabel.setText("title")
+        titleField.setText("What skill do you want to learn?")
         titleField.addBottomBorder()
         
-        goalsField.setText("Enter goals")
+        goalsLabel.setText("goals")
+        goalsField.setText("What do you want to accomplish with this?")
         goalsField.addBottomBorder()
         
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.backgroundColor = .green
+        progressLabel.setText("progress")
+        progressDropDown.text = "Not Started"
+        progressDropDown.optionArray = [
+            "Not Started", "Preview", "Question", "Read", "Reflect", "Recite", "Review", ]
+        
+        progressDropDown.optionIds = [
+            K.StatusTask.notStarted,
+            K.StatusTask.preview,
+            K.StatusTask.question,
+            K.StatusTask.read,
+            K.StatusTask.reflect,
+            K.StatusTask.recite,
+            K.StatusTask.review,
+            K.StatusTask.done
+        ]
+        
+        progressDropDown.didSelect{(selectedText, index ,id) in
+            self.selectedProgress = id
+        }
+        
+        progressDropDown.selectedIndex = 0
+        progressDropDown.addBottomBorder()
+        
+        saveButton.setTitle("Add skill", for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        
+        vstack.addArrangedSubview(titleLabel)
+        vstack.addArrangedSubview(titleField)
+        vstack.addArrangedSubview(goalsLabel)
+        vstack.addArrangedSubview(goalsField)
+        vstack.addArrangedSubview(progressLabel)
+        vstack.addArrangedSubview(progressDropDown)
+        vstack.addArrangedSubview(getEmptyView())
+        vstack.addArrangedSubview(saveButton)
+        vstack.translatesAutoresizingMaskIntoConstraints = false
+        
+        vstack.setCustomSpacing(K.Spacing.lg, after: titleField)
+        vstack.setCustomSpacing(K.Spacing.lg, after: goalsField)
+        vstack.setCustomSpacing(K.Spacing.lg, after: progressDropDown)
+    }
+    
+    func configureLayout() {
+        view.addSubview(vstack)
+
+        vstack.snp.makeConstraints{ (make) -> Void in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(K.Offset.md)
+            make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.md)
+        }
     }
     
     @objc func saveButtonTapped(){

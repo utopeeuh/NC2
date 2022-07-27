@@ -31,9 +31,32 @@ struct K {
         static let review = 6
         static let done = 7
     }
+    
+    struct State{
+        static let isEditing = 1
+        static let isCreating = 2
+        static let isViewing = 3
+    }
+    
+    struct FontSize{
+        static let vlg : CGFloat = 32
+        static let lg : CGFloat = 24
+        static let md : CGFloat = 16
+        static let sm : CGFloat = 12
+    }
+    
+    struct Spacing{
+        static let lg : CGFloat = 48
+        static let md : CGFloat = 32
+        static let sm : CGFloat = 16
+    }
 }
 
-func convertStatus (_ status: Int) -> String{
+public func getEmptyView() -> UIView{
+    return UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1000))
+}
+
+public func convertStatus (_ status: Int) -> String{
     switch status {
     case K.StatusTask.notStarted:
         return "Not Started"

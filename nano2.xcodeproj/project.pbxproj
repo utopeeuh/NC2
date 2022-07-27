@@ -42,6 +42,11 @@
 		95811498288BB07F000C627F /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95811496288BB07F000C627F /* LogInVC.swift */; };
 		9581149C288BB175000C627F /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581149B288BB175000C627F /* Textfield.swift */; };
 		9581149E288BB2C7000C627F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581149D288BB2C7000C627F /* GradientButton.swift */; };
+		959A2FDA2891425A001B5723 /* TextFieldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FD92891425A001B5723 /* TextFieldLabel.swift */; };
+		959A2FDC289147DD001B5723 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FDB289147DD001B5723 /* Button.swift */; };
+		959A2FDE28914C49001B5723 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FDD28914C49001B5723 /* TextButton.swift */; };
+		959A2FE028915895001B5723 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FDF28915895001B5723 /* JournalViewController.swift */; };
+		959A2FE2289177CA001B5723 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FE1289177CA001B5723 /* EmptyView.swift */; };
 		959E2A8A288EEC5200E0DA3B /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E2A89288EEC5200E0DA3B /* TaskCell.swift */; };
 		959E2A8C288EFADB00E0DA3B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E2A8B288EFADB00E0DA3B /* TabBarController.swift */; };
 		95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC5821288DAE4400FA16B9 /* Constants.swift */; };
@@ -77,6 +82,11 @@
 		95811496288BB07F000C627F /* LogInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		9581149B288BB175000C627F /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		9581149D288BB2C7000C627F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		959A2FD92891425A001B5723 /* TextFieldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLabel.swift; sourceTree = "<group>"; };
+		959A2FDB289147DD001B5723 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		959A2FDD28914C49001B5723 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		959A2FDF28915895001B5723 /* JournalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JournalViewController.swift; path = nano2/JournalViewController.swift; sourceTree = SOURCE_ROOT; };
+		959A2FE1289177CA001B5723 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		959E2A89288EEC5200E0DA3B /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		959E2A8B288EFADB00E0DA3B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		95BC5821288DAE4400FA16B9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -128,9 +138,9 @@
 		950D8C3C288E403300BAB304 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				959A2FDF28915895001B5723 /* JournalViewController.swift */,
 				9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */,
 				950D8C39288E401E00BAB304 /* AddTaskVC.swift */,
-				959E2A89288EEC5200E0DA3B /* TaskCell.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -158,8 +168,14 @@
 		9524B7A5288D9A6500CA5FF1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				959E2A89288EEC5200E0DA3B /* TaskCell.swift */,
 				9581149B288BB175000C627F /* Textfield.swift */,
 				9581149D288BB2C7000C627F /* GradientButton.swift */,
+				959A2FD92891425A001B5723 /* TextFieldLabel.swift */,
+				959A2FDB289147DD001B5723 /* Button.swift */,
+				959A2FDD28914C49001B5723 /* TextButton.swift */,
+				9522546B288FDA8D00A811CC /* iOSDropDown.swift */,
+				959A2FE1289177CA001B5723 /* EmptyView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -203,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				9522546C288FDA8D00A811CC /* Date+DateComparison.swift */,
-				9522546B288FDA8D00A811CC /* iOSDropDown.swift */,
 				9522546D288FDA8D00A811CC /* UIImageView+LoadImage.swift */,
 				9522546E288FDA8D00A811CC /* UIView+Fade.swift */,
 				9522546A288FDA8D00A811CC /* UIViewController+LoadingSpinner.swift */,
@@ -301,13 +316,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				959A2FDA2891425A001B5723 /* TextFieldLabel.swift in Sources */,
 				95225467288FD9A800A811CC /* UserRepository.swift in Sources */,
 				95BC5824288DBEB300FA16B9 /* VCConfig.swift in Sources */,
 				950D8C41288E90A100BAB304 /* FirestoreHelper.swift in Sources */,
+				959A2FDC289147DD001B5723 /* Button.swift in Sources */,
 				9524B7A1288D8F3400CA5FF1 /* SceneController.swift in Sources */,
+				959A2FDE28914C49001B5723 /* TextButton.swift in Sources */,
 				95225471288FDA8D00A811CC /* Date+DateComparison.swift in Sources */,
 				95225465288FD94500A811CC /* TaskRepository.swift in Sources */,
 				95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */,
+				959A2FE028915895001B5723 /* JournalViewController.swift in Sources */,
 				950D8C3A288E401E00BAB304 /* AddTaskVC.swift in Sources */,
 				9554C2A5288A5127003CF7CA /* nano2.xcdatamodeld in Sources */,
 				9554C29F288A5127003CF7CA /* HomeVC.swift in Sources */,
@@ -317,6 +336,7 @@
 				959E2A8A288EEC5200E0DA3B /* TaskCell.swift in Sources */,
 				950D8C38288E3B0600BAB304 /* BigTask.swift in Sources */,
 				9522546F288FDA8D00A811CC /* UIViewController+LoadingSpinner.swift in Sources */,
+				959A2FE2289177CA001B5723 /* EmptyView.swift in Sources */,
 				959E2A8C288EFADB00E0DA3B /* TabBarController.swift in Sources */,
 				9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */,
 				95225470288FDA8D00A811CC /* iOSDropDown.swift in Sources */,
