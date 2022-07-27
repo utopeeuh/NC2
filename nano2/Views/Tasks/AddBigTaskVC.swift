@@ -11,21 +11,18 @@ import UIKit
 
 class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableViewDataSource{
     
-    var bigTitle = Textfield()
-    var addRowButton = UIButton()
-    var taskTable = UITableView()
-    var saveButton = UIButton()
+    private var bigTitle = Textfield()
+    private var addRowButton = UIButton()
+    private var taskTable = UITableView()
+    private var saveButton = UIButton()
+    public var saveCompletion : (() -> Void)?
     
-    var tasks : [Task] = []
-    
-    @objc func backAction(){
-        self.navigationController?.popViewController(animated: true)
-    }
+    private var tasks : [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         configureComponents()
         configureLayout()
@@ -58,9 +55,10 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     @objc func saveButtonTapped(){
         //save to firebase
         let newBigTask = BigTask(bigTitle.text!, tasks)
-        taskRepo.createTask(newBigTask)
-        // pop vc
-        self.navigationController?.popViewController(animated: true)
+        taskRepo.createTask(newBigTask){
+            self.saveCompletion?()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func configureLayout() {
@@ -70,28 +68,28 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         view.addSubview(saveButton)
         
         bigTitle.snp.makeConstraints{(make) -> Void in
-            make.top.equalToSuperview().offset(K.Offset.topComponent)
-            make.width.equalToSuperview().offset(-K.Offset.width)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         
         addRowButton.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(bigTitle.snp.bottom).offset(K.Offset.lg)
-            make.width.equalToSuperview().offset(-K.Offset.width)
-            make.centerX.equalToSuperview()
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         
         taskTable.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(addRowButton.snp.bottom).offset(K.Offset.lg)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.leading.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
         saveButton.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(taskTable.snp.bottom).offset(K.Offset.lg)
-            make.width.equalToSuperview().offset(-K.Offset.width)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-K.Offset.lg)
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.lg)
         }
     }
     
@@ -104,7 +102,8 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTable.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         
-        cell.setTask(tasks[indexPath.row])
+        cell.titleLabel.text = tasks[indexPath.row].title
+        cell.progressLabel.text = "Current progress: \(convertStatus(tasks[indexPath.row].status ?? 0))"
         
         return cell
     }
@@ -122,8 +121,6 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
             self.taskTable.delegate = self
             self.taskTable.dataSource = self
             self.taskTable.reloadData()
-
-            print(self.tasks.count)
         }
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -40,7 +40,6 @@ class Textfield: UITextField {
     
     func addBottomBorder(){
         let bottomLine = CALayer()
-        print("Height: \(self.frame.height), Width: \(self.frame.width)")
         bottomLine.frame = CGRect(x: 0, y: height - Double(K.Offset.lg), width: UIScreen.main.bounds.width-Double(K.Offset.width), height: 1)
         bottomLine.backgroundColor = UIColor.red.cgColor
     

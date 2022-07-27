@@ -18,7 +18,6 @@ class UserRepository{
     func fetchUser(completion: @escaping () -> Void){
         fs.rootUsers.document(Auth.auth().currentUser!.uid).getDocument { (docSnapshot, err) in
             if let doc = docSnapshot {
-                print(Auth.auth().currentUser!.uid)
                 // Fetch big tasks, fetch friends at friends page to reduce load
                 var bigTasks : [BigTask] = []
                 let group = DispatchGroup()
@@ -42,6 +41,11 @@ class UserRepository{
                         bigTasks: bigTasks,
                         friends: []
                     )
+                    
+                    currentUser?.bigTasks.sort { (lhs: BigTask, rhs: BigTask) -> Bool in
+                        return lhs.dateCreated > rhs.dateCreated
+                    }
+                    
                     completion()
                 }
             }

@@ -15,6 +15,7 @@ class TaskCell: UITableViewCell{
     var progressLabel = UILabel()
     let vStack = UIStackView()
     var cellColor : UIColor?
+    var isBigTask = false
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,10 +52,5 @@ class TaskCell: UITableViewCell{
             make.leading.equalTo(self).offset(K.Offset.md)
             make.trailing.equalTo(self).offset(-K.Offset.md)
         }
-    }
-    
-    func setTask(_ task: Task){
-        titleLabel.text = task.title
-        progressLabel.text = "Current progress: \(convertStatus(task.status ?? 0))"
     }
 }

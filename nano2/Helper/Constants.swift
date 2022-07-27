@@ -29,6 +29,7 @@ struct K {
         static let reflect = 4
         static let recite = 5
         static let review = 6
+        static let done = 7
     }
 }
 

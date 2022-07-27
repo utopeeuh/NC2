@@ -32,4 +32,15 @@ class BigTask{
         self.dateCompleted = dateCompleted
         self.dateCreated = dateCreated
     }
+    
+    func countProgress() -> String{
+        var total = 0.0
+        self.tasks.forEach { task in
+            total += Double(task.status)
+        }
+        
+        let progressText = "\(NSString(format: "%.0f", total/(Double(self.tasks.count)*0.07)) as String) %"
+        
+        return progressText
+    }
 }

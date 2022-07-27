@@ -61,9 +61,9 @@ class LogInVC: UIViewController, VCConfig{
         view.addSubview(errorLabel)
         
         emailTextField.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(view).offset(K.Offset.topComponent)
-            make.centerX.equalTo(view)
-            make.width.equalTo(view).offset(-K.Offset.width)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
         }
         
         setConstraints(passwordTextField, emailTextField,K.Offset.lg)
@@ -75,8 +75,8 @@ class LogInVC: UIViewController, VCConfig{
     func setConstraints(_ tf: ConstraintView, _ top: ConstraintView, _ offset: Int){
         tf.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(top.snp.bottom).offset(offset)
-            make.centerX.equalTo(view)
-            make.width.equalTo(view).offset(-K.Offset.width)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
         }
     }
     

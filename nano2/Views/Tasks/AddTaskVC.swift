@@ -37,21 +37,21 @@ class AddTaskVC: UIViewController, VCConfig{
     
     func configureLayout() {
         titleField.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(view).offset(K.Offset.topComponent)
-            make.centerX.equalTo(view)
-            make.width.equalTo(view).offset(-K.Offset.width)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
         }
         
         goalsField.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(titleField.snp.bottom).offset(K.Offset.lg)
-            make.centerX.equalTo(view)
-            make.width.equalTo(view).offset(-K.Offset.width)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
         }
         
         saveButton.snp.makeConstraints{ (make) -> Void in
             make.top.equalTo(goalsField.snp.bottom).offset(K.Offset.lg)
-            make.centerX.equalTo(view)
-            make.width.equalTo(view).offset(-K.Offset.width)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.width)
         }
     }
     

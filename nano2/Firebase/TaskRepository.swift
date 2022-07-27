@@ -101,7 +101,6 @@ class TaskRepository{
                                  status: doc.get("status") as? Int ?? 0
                              ))
                              
-                             print(doc.get("title") as? String ?? "")
                              group.leave()
                          }
                      }
@@ -115,11 +114,11 @@ class TaskRepository{
         }
     }
     
-    func createTask(_ bigTask: BigTask){
+    func createTask(_ bigTask: BigTask, completion: @escaping () -> Void){
 
         // create small tasks
         
-        var newTaskPaths : [String] = []
+        var newTaskPaths : [DocumentReference] = []
         
         let group = DispatchGroup()
         
@@ -136,11 +135,13 @@ class TaskRepository{
                 } else {
                     print("Task successfully created")
                     task.id = newTaskRef.documentID
-                    newTaskPaths.append(newTaskRef.path)
+                    newTaskPaths.append(newTaskRef)
                     group.leave()
                 }
             }
         }
+        
+        // create big task
         
         group.notify(queue: .main) {
             let newBigTaskRef = fs.rootBigTask.document()
@@ -154,14 +155,15 @@ class TaskRepository{
                 if let err = err {
                     print("Error: \(err.localizedDescription)")
                 } else {
-                    print("Task successfully created")
+                    print("Big Task successfully created")
                     bigTask.id = newBigTaskRef.documentID
                     
                     // append big task to current user
-                    currentUser?.bigTasks.append(bigTask)
+                    currentUser?.bigTasks.insert(bigTask, at: 0)
                     fs.rootUsers.document(currentUser!.id).updateData([
-                        "big_tasks": FieldValue.arrayUnion([newBigTaskRef.path])
+                        "big_tasks": FieldValue.arrayUnion([newBigTaskRef])
                     ])
+                    completion()
                 }
             }
         }
