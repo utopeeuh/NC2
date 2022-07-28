@@ -169,6 +169,45 @@ class TaskRepository{
         }
     }
     
+    func minProgress(_ task: Task, completion: @escaping (_ success: Bool) -> Void){
+        if(task.status > 0){
+            task.status -= 1
+            fs.rootTask.document(task.id!).updateData([
+                "status": task.status
+            ])
+            { err in
+                if let err = err {
+                   print("Error updating task progress")
+                    completion(false)
+                } else {
+                    print("Task progress successfully updated")
+                    completion(true)
+                }
+            }
+        }else{
+            completion(false)
+        }
+    }
+    
+    func addProgress(_ task: Task, completion: @escaping (_ success: Bool) -> Void){
+        if(task.status < 7){
+            task.status += 1
+            fs.rootTask.document(task.id!).updateData([
+                "status": task.status
+                ! ?? default value            ]) { err in
+                if let err = err {
+                   print("Error updating task progress")
+                    completion(false)
+                } else {
+                    print("Task progress successfully updated")
+                    completion(true)
+                }
+            }
+        } else{
+            completion(false)
+        }
+    }
+    
 //    func updateJournal(id: String, entry: Entry){
 //        fs.rootJournal.document(id).updateData([
 //            "title": entry.title,

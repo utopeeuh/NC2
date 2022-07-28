@@ -51,6 +51,8 @@
 		959E2A8C288EFADB00E0DA3B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E2A8B288EFADB00E0DA3B /* TabBarController.swift */; };
 		95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC5821288DAE4400FA16B9 /* Constants.swift */; };
 		95BC5824288DBEB300FA16B9 /* VCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC5823288DBEB300FA16B9 /* VCConfig.swift */; };
+		95DC51B12892338C003C3D90 /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC51B02892338C003C3D90 /* TaskButton.swift */; };
+		95DC51B328923AC2003C3D90 /* ManageBigTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC51B228923AC2003C3D90 /* ManageBigTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,8 @@
 		959E2A8B288EFADB00E0DA3B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		95BC5821288DAE4400FA16B9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95BC5823288DBEB300FA16B9 /* VCConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCConfig.swift; sourceTree = "<group>"; };
+		95DC51B02892338C003C3D90 /* TaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
+		95DC51B228923AC2003C3D90 /* ManageBigTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBigTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 				959A2FDF28915895001B5723 /* JournalViewController.swift */,
 				9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */,
 				950D8C39288E401E00BAB304 /* AddTaskVC.swift */,
+				95DC51B228923AC2003C3D90 /* ManageBigTask.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				959A2FDD28914C49001B5723 /* TextButton.swift */,
 				9522546B288FDA8D00A811CC /* iOSDropDown.swift */,
 				959A2FE1289177CA001B5723 /* EmptyView.swift */,
+				95DC51B02892338C003C3D90 /* TaskButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -316,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DC51B12892338C003C3D90 /* TaskButton.swift in Sources */,
 				959A2FDA2891425A001B5723 /* TextFieldLabel.swift in Sources */,
 				95225467288FD9A800A811CC /* UserRepository.swift in Sources */,
 				95BC5824288DBEB300FA16B9 /* VCConfig.swift in Sources */,
@@ -343,6 +350,7 @@
 				95225473288FDA8D00A811CC /* UIView+Fade.swift in Sources */,
 				9581149E288BB2C7000C627F /* GradientButton.swift in Sources */,
 				9554C29D288A5127003CF7CA /* SceneDelegate.swift in Sources */,
+				95DC51B328923AC2003C3D90 /* ManageBigTask.swift in Sources */,
 				9581149C288BB175000C627F /* Textfield.swift in Sources */,
 				950D8C33288E37FE00BAB304 /* Task.swift in Sources */,
 				9524B7A3288D98C400CA5FF1 /* AddBigTaskVC.swift in Sources */,

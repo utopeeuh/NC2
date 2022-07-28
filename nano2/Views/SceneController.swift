@@ -15,11 +15,13 @@ class SceneController{
     let signupVC : UIViewController
     let loginVC : UIViewController
     let tabBar : UITabBarController
+    let homeVC : UIViewController
     
     init(){
         signupVC = SignUpVC()
         loginVC = LogInVC()
         tabBar = TabBarController()
+        homeVC = HomeVC()
 
         tabBar.selectedIndex = 0
         tabBar.navigationController?.setNavigationBarHidden(true, animated: true)

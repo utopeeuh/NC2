@@ -70,7 +70,9 @@ public func convertStatus (_ status: Int) -> String{
         return "Reflect"
     case K.StatusTask.recite:
         return "Recite"
-    default:
+    case K.StatusTask.review:
         return "Review"
+    default:
+        return "Done"
     }
 }

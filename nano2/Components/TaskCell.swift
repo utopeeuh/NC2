@@ -15,31 +15,33 @@ class TaskCell: UITableViewCell{
     var progressLabel = UILabel()
     var textStack = UIStackView()
     
-    var editButton = TextButton()
+    var editButton = TaskButton()
     
     var progressStack = UIStackView()
-    var minProgressButton = TextButton()
-    var addProgrssButton = TextButton()
+    var minProgressButton = TaskButton()
+    var addProgressButton = TaskButton()
     
-    var manageButton = Button()
+    var manageButton = TaskButton()
     
     var cellStack = UIStackView()
     var cellColor : UIColor?
-    var isBigTask = false
     
     private var cellState = 0
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        selectionStyle = .none
+        
         // Configure Components
         backgroundColor = .systemBackground
         layer.cornerRadius = 10
         layer.masksToBounds = true
-        layer.borderColor = UIColor.systemGray.cgColor
+        layer.borderColor = UIColor.systemBlue.cgColor
         layer.borderWidth = 1
         contentView.alpha = 0
     
+        // fade in
         UIView.animate(withDuration: 1, animations: { self.contentView.alpha = 1 })
         
         titleLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .medium)
@@ -85,25 +87,42 @@ class TaskCell: UITableViewCell{
     func getCellButton() -> UIView{
         switch(cellState){
         case K.State.isCreating:
-            editButton.setImage(UIImage.init(systemName: "pencil"), for: .normal)
+            editButton.setTitle("Edit", for: .normal)
+            editButton.snp.makeConstraints { make in
+                make.width.equalTo(70)
+            }
             return editButton
             
         case K.State.isEditing:
             progressStack.axis = .horizontal
-            progressStack.alignment = .leading
+            progressStack.alignment = .fill
             progressStack.distribution = .equalSpacing
             
-            minProgressButton.setImage(UIImage.init(systemName: "chevron.left"), for: .normal)
-            addProgrssButton.setImage(UIImage.init(systemName: "chevron.right"), for: .normal)
+//            minProgressButton.setImage(UIImage.init(systemName: "chevron.left"), for: .normal)
+//            addProgressButton.setImage(UIImage.init(systemName: "chevron.right"), for: .normal)
+            
+            minProgressButton.setTitle("<", for: .normal)
+            addProgressButton.setTitle(">", for: .normal)
+            
+            minProgressButton.snp.makeConstraints { make in
+                make.width.equalTo(30)
+            }
+            
+            addProgressButton.snp.makeConstraints { make in
+                make.width.equalTo(30)
+            }
 
             progressStack.addArrangedSubview(minProgressButton)
-            progressStack.addArrangedSubview(addProgrssButton)
+            progressStack.addArrangedSubview(addProgressButton)
             progressStack.translatesAutoresizingMaskIntoConstraints = false
             
             return progressStack
             
         default:
             manageButton.setTitle("Manage", for: .normal)
+            manageButton.snp.makeConstraints { make in
+                make.width.equalTo(100)
+            }
             return manageButton
         }
     }

@@ -10,12 +10,17 @@ import SnapKit
 
 class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataSource{
     
-    private var bigTaskTable = UITableView()
+    public var bigTaskTable = UITableView()
     private var userLabel = UILabel()
     private var seperatorLabel = UILabel()
     private var vstack = UIStackView()
     private let cellIdentifier = "bigTaskCell"
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        bigTaskTable.reloadData()
+        print("ASDasdoijkhsandlasjdlakSjdklaSJda")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +50,11 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
         vstack.alignment = .fill
         vstack.spacing = K.Spacing.md
         
-        userLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .bold)
+        userLabel.font = UIFont.systemFont(ofSize: K.FontSize.lg, weight: .bold)
         userLabel.textColor = .black
         
         seperatorLabel.text = "Currently Learning"
-        seperatorLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .bold)
+        seperatorLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .medium)
         seperatorLabel.textColor = .black
         
         bigTaskTable.delegate = self
@@ -57,12 +62,12 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
         bigTaskTable.backgroundColor = .white
         bigTaskTable.register(TaskCell.self, forCellReuseIdentifier: cellIdentifier)
         
-        vstack.addArrangedSubview(userLabel)
+//        vstack.addArrangedSubview(userLabel)
         vstack.addArrangedSubview(seperatorLabel)
         vstack.addArrangedSubview(bigTaskTable)
         vstack.translatesAutoresizingMaskIntoConstraints = false
         
-        let addBigTask = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addBigTaskTapped))
+        let addBigTask = UIBarButtonItem(title: "Add new plan", style: .plain, target: self, action: #selector(addBigTaskTapped))
         navigationItem.rightBarButtonItem = addBigTask
     }
     
@@ -94,23 +99,55 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
         super.didReceiveMemoryWarning()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return currentUser?.bigTasks.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: bigTaskTable.frame.size.width, height: 10))
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = bigTaskTable.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TaskCell
         
-        let currBigTask = currentUser?.bigTasks ?? []
-        cell.titleLabel.text = currBigTask[indexPath.row].title
-        cell.progressLabel.text = currBigTask[indexPath.row].countProgress()
-        cell.isBigTask = true
+        let currBigTask = currentUser!.bigTasks[(indexPath as NSIndexPath).section]
+        cell.titleLabel.text = currBigTask.title
+        cell.progressLabel.text = "Progress: \(currBigTask.countProgress())"
+        cell.manageButton.bigTask = currBigTask
+        cell.manageButton.addTarget(self, action: #selector(goToManageBigTask(_:)), for: .touchUpInside)
+        cell.setState(K.State.isViewing)
         
         return cell
     }
     
+    @objc func goToManageBigTask(_ sender: TaskButton){
+        let vc = ManageBigTask()
+        vc.currBigTask = sender.bigTask
+//        vc.finishCompletion = {
+//            self.bigTaskTable.reloadData()
+//            print("Reloaded Table")
+//        }
+        
+        vc.hidesBottomBarWhenPushed = true;
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // note that indexPath.section is used rather than indexPath.row
+        bigTaskTable.deselectRow(at: indexPath, animated: true)
     }
 }
 

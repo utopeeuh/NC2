@@ -37,10 +37,6 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         configureLayout()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func configureComponents() {
         vstack.axis = .vertical
         vstack.alignment = .fill
@@ -120,7 +116,11 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    // MARK: - Setup Table
+    // MARK: - Configure table view
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return tasks.count
@@ -129,12 +129,6 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     // There is just one row in every section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-    }
-    
-    // Set the spacing between sections
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        // if section has header text, bigger spacing
-        return 8
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -154,8 +148,14 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         cell.titleLabel.text = currTask.title
         cell.progressLabel.text = "Current progress: \(convertStatus(currTask.status ?? 0))"
         cell.setState(K.State.isCreating)
+        cell.editButton.task = currTask
+        cell.editButton.addTarget(self, action: #selector(goToTaskEdit(_:)), for: .touchUpInside)
         
         return cell
+    }
+    
+    @objc func goToTaskEdit(_ sender: TaskButton){
+        print(sender.task!.title)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
