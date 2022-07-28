@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-class BigTask{
+class BigTask : Equatable{
+    
+    static func == (lhs: BigTask, rhs: BigTask) -> Bool {
+        return lhs.id == rhs.id ? true : false
+    }
+    
     var id: String?
     var title: String!
     var tasks: [Task] = []
@@ -42,5 +47,14 @@ class BigTask{
         let progressText = "\(NSString(format: "%.0f", total/(Double(self.tasks.count)*0.07)) as String) %"
         
         return progressText
+    }
+    
+    func countProgressFloat() -> Float{
+        var total : Float = 0.0
+        self.tasks.forEach { task in
+            total += Float(task.status)
+        }
+        
+        return (total/(Float(self.tasks.count)*7))
     }
 }

@@ -8,11 +8,14 @@
 import Foundation
 import UIKit
 
-class ManageBigTask : UIViewController, VCConfig, UITableViewDelegate, UITableViewDataSource {
+class ManageBigTaskVC : UIViewController, VCConfig, UITableViewDelegate, UITableViewDataSource {
     
     private var taskTable = UITableView()
-    private var userLabel = UILabel()
+    private var bigTaskLabel = UILabel()
+    private var progressView = UIProgressView()
+    private var progressLabel = UILabel()
     private var seperatorLabel = UILabel()
+    private var finishButton = Button()
     private var vstack = UIStackView()
     private let cellIdentifier = "manageTaskCell"
     
@@ -22,24 +25,11 @@ class ManageBigTask : UIViewController, VCConfig, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         title = "Manage Plan"
+        
         view.backgroundColor = .systemBackground
         
         configureComponents()
         configureLayout()
-        
-        showSpinner(onView: self.view)
-        let group = DispatchGroup()
-        group.enter()
-        
-        userRepo.fetchUser {
-            group.leave()
-        }
-        
-        group.notify(queue: .main){ [self] in
-            removeSpinner()
-            userLabel.text = "Welcome back, " + (currentUser?.username ?? "User")
-            taskTable.reloadData()
-        }
     }
     
     func configureComponents() {
@@ -48,20 +38,38 @@ class ManageBigTask : UIViewController, VCConfig, UITableViewDelegate, UITableVi
         vstack.alignment = .fill
         vstack.spacing = K.Spacing.md
         
-        userLabel.font = UIFont.systemFont(ofSize: K.FontSize.lg, weight: .bold)
-        userLabel.textColor = .black
+        bigTaskLabel.text = currBigTask.title
+        bigTaskLabel.font = UIFont.systemFont(ofSize: K.FontSize.lg, weight: .bold)
+        bigTaskLabel.textColor = .black
+        
+        progressView.layer.cornerRadius = 10
+        progressView.clipsToBounds = true
+        progressView.layer.sublayers![1].cornerRadius = 10
+        progressView.subviews[1].clipsToBounds = true
+        progressView.transform = progressView.transform.scaledBy(x: 1, y: 2)
         
         seperatorLabel.text = "Skills"
-        seperatorLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .medium)
-        seperatorLabel.textColor = .black
+        seperatorLabel.font = UIFont.systemFont(ofSize: K.FontSize.lg, weight: .bold)
+        
+        progressLabel.font = UIFont.systemFont(ofSize: K.FontSize.sm, weight: .regular)
+        progressLabel.textAlignment = .left
         
         taskTable.delegate = self
         taskTable.dataSource = self
         taskTable.backgroundColor = .white
         taskTable.register(TaskCell.self, forCellReuseIdentifier: cellIdentifier)
         
+        finishButton.setTitle("Finish plan", for: .normal)
+        finishButton.addTarget(self, action: #selector(finishButtonTapped), for: .touchUpInside)
+        
+        setProgressBar()
+        
+        vstack.addArrangedSubview(bigTaskLabel)
+        vstack.addArrangedSubview(progressView)
+        vstack.addArrangedSubview(progressLabel)
         vstack.addArrangedSubview(seperatorLabel)
         vstack.addArrangedSubview(taskTable)
+        vstack.addArrangedSubview(finishButton)
         vstack.translatesAutoresizingMaskIntoConstraints = false
         
         let editPlanButton = UIBarButtonItem(title: "Edit plan", style: .plain, target: self, action: #selector(editPlanTapped))
@@ -70,24 +78,63 @@ class ManageBigTask : UIViewController, VCConfig, UITableViewDelegate, UITableVi
     
     func configureLayout() {
         view.addSubview(vstack)
-
+        
         vstack.snp.makeConstraints{ (make) -> Void in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(K.Offset.md)
             make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-K.Offset.md)
         }
         
+        vstack.setCustomSpacing(K.Spacing.sm, after: bigTaskLabel)
+        vstack.setCustomSpacing(K.Spacing.sm, after: progressView)
+    }
+    
+    func setProgressBar(){
+        progressView.progress = currBigTask.countProgressFloat()
+        progressLabel.text = "\(currBigTask.countProgress()) Done"
+        
+        finishButton.isEnabled = currBigTask.countProgressFloat() == 1 ? true : false
+    }
+    
+    @objc func finishButtonTapped(){
+        // create the alert
+        let alert = UIAlertController(title: "Are you sure?", message: "This is plan will be moved to your history", preferredStyle: UIAlertController.Style.alert)
+
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] (UIAlertAction)in
+            // update firestore
+            taskRepo.setDone(currBigTask)
+            
+            // update current data
+            currentUser?.finishedTasks.append(currBigTask)
+            let ongoingTasks = currentUser?.ongoingTasks
+            for taskIndex in 0...ongoingTasks!.count-1{
+                if ongoingTasks![taskIndex] == currBigTask{
+                    currentUser?.ongoingTasks.remove(at: taskIndex)
+                }
+            }
+            
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc func editPlanTapped(_ sender: Any){
-//        let vc = AddBigTaskVC()
-//
-//        vc.saveCompletion = {
-//            self.bigTaskTable.reloadData()
-//            print("Reloaded Table")
-//        }
-//
-//        vc.hidesBottomBarWhenPushed = true;
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = AddBigTaskVC()
+        vc.isEditingMode = true
+        vc.taskEdit = currBigTask
+        
+        vc.editCompletion = { [self] in
+            bigTaskLabel.text = currBigTask.title
+            setProgressBar()
+            taskTable.reloadData()
+        }
+
+        vc.hidesBottomBarWhenPushed = true;
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -137,24 +184,27 @@ class ManageBigTask : UIViewController, VCConfig, UITableViewDelegate, UITableVi
     }
     
     @objc func minProgressTapped(_ sender: TaskButton){
-        let indexPath = IndexPath(item: 0, section: sender.row!)
         // update firestore
         taskRepo.minProgress(sender.task!){ success in
             if (success){
-                self.taskTable.reloadRows(at: [indexPath], with: .automatic)
+                self.setProgressBar()
+                self.setCellProgress(IndexPath(item: 0, section: sender.row!), task: sender.task!)
             }
         }
     }
     
     @objc func addProgressTapped(_ sender: TaskButton){
-        let indexPath = IndexPath(item: 0, section: sender.row!)
-        taskTable.reloadRows(at: [indexPath], with: .automatic)
-        // update firestore
         taskRepo.addProgress(sender.task!){ success in
             if (success){
-                self.taskTable.reloadRows(at: [indexPath], with: .automatic)
+                self.setProgressBar()
+                self.setCellProgress(IndexPath(item: 0, section: sender.row!), task: sender.task!)
             }
         }
+    }
+    
+    func setCellProgress(_ indexPath: IndexPath, task: Task){
+        let cell = self.taskTable.cellForRow(at: indexPath) as! TaskCell
+        cell.progressLabel.text = "Progress: \(convertStatus((task.status)!)) "
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

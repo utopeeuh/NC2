@@ -97,7 +97,6 @@ class TaskRepository{
                              tasks.append(Task(
                                  id: doc.documentID,
                                  title: doc.get("title") as? String ?? "",
-                                 goals: doc.get("goals") as? String ?? "",
                                  status: doc.get("status") as? Int ?? 0
                              ))
                              
@@ -127,7 +126,6 @@ class TaskRepository{
             let newTaskRef = fs.rootTask.document()
             newTaskRef.setData([
                 "title": task.title!,
-                "goals": task.goals!,
                 "status": task.status!
             ]) { err in
                 if let err = err {
@@ -159,7 +157,7 @@ class TaskRepository{
                     bigTask.id = newBigTaskRef.documentID
                     
                     // append big task to current user
-                    currentUser?.bigTasks.insert(bigTask, at: 0)
+                    currentUser?.ongoingTasks.insert(bigTask, at: 0)
                     fs.rootUsers.document(currentUser!.id).updateData([
                         "big_tasks": FieldValue.arrayUnion([newBigTaskRef])
                     ])
@@ -173,10 +171,10 @@ class TaskRepository{
         if(task.status > 0){
             task.status -= 1
             fs.rootTask.document(task.id!).updateData([
-                "status": task.status
+                "status": task.status!
             ])
             { err in
-                if let err = err {
+                if err != nil {
                    print("Error updating task progress")
                     completion(false)
                 } else {
@@ -193,9 +191,10 @@ class TaskRepository{
         if(task.status < 7){
             task.status += 1
             fs.rootTask.document(task.id!).updateData([
-                "status": task.status
-                ! ?? default value            ]) { err in
-                if let err = err {
+                "status": task.status!
+                ])
+            { err in
+                if err != nil {
                    print("Error updating task progress")
                     completion(false)
                 } else {
@@ -203,8 +202,88 @@ class TaskRepository{
                     completion(true)
                 }
             }
-        } else{
+        }else{
             completion(false)
+        }
+    }
+    
+    func setDone(_ bigTask: BigTask){
+        fs.rootBigTask.document(bigTask.id!).updateData([
+            "is_done": true
+        ])
+        { err in
+            if err != nil {
+               print("Error updating task progress")
+            } else {
+                print("Big Task set to done successfully")
+            }
+        }
+    }
+    
+    func setNotDone(_ bigTask: BigTask){
+        fs.rootBigTask.document(bigTask.id!).updateData([
+            "is_done": false
+        ])
+        { err in
+            if err != nil {
+               print("Error updating task progress")
+            } else {
+                print("Big Task set to not done successfully")
+            }
+        }
+    }
+    
+    func recreateBigTask(_ bigTask: BigTask, completion: @escaping () -> Void){
+        //delete exisitng data
+        let bigTaskDocRef = fs.rootBigTask.document(bigTask.id!)
+        
+        let group = DispatchGroup()
+        
+        //delete big task ref from user
+        group.enter()
+        fs.rootUsers.document((currentUser?.id)!).updateData([
+            "big_tasks" : FieldValue.arrayRemove([bigTaskDocRef])
+        ]){ err in
+            if err == nil{
+                group.leave()
+            }
+        }
+        
+        //delete big task
+        group.enter()
+        fs.rootBigTask.document(bigTask.id!).delete
+        { err in
+            if err == nil{
+                group.leave()
+            }
+        }
+        
+        //delete small task
+        bigTask.tasks.forEach { task in
+            group.enter()
+            if(task.id != nil){
+                print("title ngentot: \(task.title)")
+                fs.rootTask.document(task.id!).delete()
+            }
+            
+            group.leave()
+        }
+        
+        // recreate big task
+        group.notify(queue: .main){
+            print(bigTask.tasks.last!.title)
+            self.createTask(bigTask) {
+                let ongoingTasks = currentUser?.ongoingTasks
+                print(ongoingTasks!.count-1)
+                for idx in 0...ongoingTasks!.count-1{
+                    if ongoingTasks![idx] == bigTask{
+                        print("\(ongoingTasks![idx].id) == \(bigTask.id)")
+                        currentUser?.ongoingTasks.remove(at: idx)
+                        break
+                    }
+                }
+                completion()
+            }
         }
     }
     

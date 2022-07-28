@@ -8,22 +8,24 @@
 import Foundation
 import UIKit
 
-class Task {
-    var id: String?
-    var title: String!
-    var goals: String!
-    var status: Int!
+class Task : Equatable {
     
-    init(_ title: String, _ goals: String){
-        self.title = title
-        self.goals = goals
-        self.status = K.StatusTask.notStarted
+    static func == (lhs: Task, rhs: Task) -> Bool {
+        return lhs.id == rhs.id ? true : false
     }
     
-    init(id: String, title: String, goals: String, status: Int){
+    var id: String?
+    var title: String!
+    var status: Int!
+    
+    init(_ title: String, _ status: Int){
+        self.title = title
+        self.status = status
+    }
+    
+    init(id: String, title: String, status: Int){
         self.id = id
         self.title = title
-        self.goals = goals
         self.status = status
     }
 }

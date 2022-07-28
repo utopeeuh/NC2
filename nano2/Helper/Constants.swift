@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 var currentUser: User?
-var currBigTasks: BigTask?
 
 struct K {
     struct Offset {

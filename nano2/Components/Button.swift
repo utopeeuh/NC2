@@ -24,11 +24,24 @@ class Button: UIButton {
         self.initialize()
     }
     
+    override var isEnabled: Bool {
+        didSet {
+            if(!isEnabled){
+                backgroundColor = .systemGray3
+                layer.borderWidth = 0
+            }else{
+                backgroundColor = .systemBlue
+                layer.borderWidth = 1
+            }
+        }
+    }
     func initialize(){
         backgroundColor = .systemBlue
         layer.cornerRadius = 5
         layer.borderWidth = 1
         layer.borderColor = UIColor.systemBlue.cgColor
+        
+        setTitleColor(.systemGray, for: .disabled)
     }
     
     func invert(){

@@ -42,6 +42,10 @@
 		95811498288BB07F000C627F /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95811496288BB07F000C627F /* LogInVC.swift */; };
 		9581149C288BB175000C627F /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581149B288BB175000C627F /* Textfield.swift */; };
 		9581149E288BB2C7000C627F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581149D288BB2C7000C627F /* GradientButton.swift */; };
+		958E84A42892FDD6000C786C /* EditBigTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E84A32892FDD6000C786C /* EditBigTaskVC.swift */; };
+		958E84A62892FE05000C786C /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E84A52892FE05000C786C /* HistoryVC.swift */; };
+		958E84A82892FE0D000C786C /* EditTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E84A72892FE0D000C786C /* EditTaskVC.swift */; };
+		958E84AA2892FE27000C786C /* ViewBigTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958E84A92892FE27000C786C /* ViewBigTaskVC.swift */; };
 		959A2FDA2891425A001B5723 /* TextFieldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FD92891425A001B5723 /* TextFieldLabel.swift */; };
 		959A2FDC289147DD001B5723 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FDB289147DD001B5723 /* Button.swift */; };
 		959A2FDE28914C49001B5723 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959A2FDD28914C49001B5723 /* TextButton.swift */; };
@@ -52,7 +56,7 @@
 		95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC5821288DAE4400FA16B9 /* Constants.swift */; };
 		95BC5824288DBEB300FA16B9 /* VCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BC5823288DBEB300FA16B9 /* VCConfig.swift */; };
 		95DC51B12892338C003C3D90 /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC51B02892338C003C3D90 /* TaskButton.swift */; };
-		95DC51B328923AC2003C3D90 /* ManageBigTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC51B228923AC2003C3D90 /* ManageBigTask.swift */; };
+		95DC51B328923AC2003C3D90 /* ManageBigTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC51B228923AC2003C3D90 /* ManageBigTaskVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +88,10 @@
 		95811496288BB07F000C627F /* LogInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		9581149B288BB175000C627F /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		9581149D288BB2C7000C627F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		958E84A32892FDD6000C786C /* EditBigTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBigTaskVC.swift; sourceTree = "<group>"; };
+		958E84A52892FE05000C786C /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		958E84A72892FE0D000C786C /* EditTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskVC.swift; sourceTree = "<group>"; };
+		958E84A92892FE27000C786C /* ViewBigTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBigTaskVC.swift; sourceTree = "<group>"; };
 		959A2FD92891425A001B5723 /* TextFieldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLabel.swift; sourceTree = "<group>"; };
 		959A2FDB289147DD001B5723 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		959A2FDD28914C49001B5723 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
@@ -94,7 +102,7 @@
 		95BC5821288DAE4400FA16B9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95BC5823288DBEB300FA16B9 /* VCConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCConfig.swift; sourceTree = "<group>"; };
 		95DC51B02892338C003C3D90 /* TaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
-		95DC51B228923AC2003C3D90 /* ManageBigTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBigTask.swift; sourceTree = "<group>"; };
+		95DC51B228923AC2003C3D90 /* ManageBigTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBigTaskVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +153,11 @@
 				959A2FDF28915895001B5723 /* JournalViewController.swift */,
 				9524B7A2288D98C400CA5FF1 /* AddBigTaskVC.swift */,
 				950D8C39288E401E00BAB304 /* AddTaskVC.swift */,
-				95DC51B228923AC2003C3D90 /* ManageBigTask.swift */,
+				95DC51B228923AC2003C3D90 /* ManageBigTaskVC.swift */,
+				958E84A32892FDD6000C786C /* EditBigTaskVC.swift */,
+				958E84A72892FE0D000C786C /* EditTaskVC.swift */,
+				958E84A52892FE05000C786C /* HistoryVC.swift */,
+				958E84A92892FE27000C786C /* ViewBigTaskVC.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -335,22 +347,26 @@
 				95BC5822288DAE4400FA16B9 /* Constants.swift in Sources */,
 				959A2FE028915895001B5723 /* JournalViewController.swift in Sources */,
 				950D8C3A288E401E00BAB304 /* AddTaskVC.swift in Sources */,
+				958E84AA2892FE27000C786C /* ViewBigTaskVC.swift in Sources */,
 				9554C2A5288A5127003CF7CA /* nano2.xcdatamodeld in Sources */,
 				9554C29F288A5127003CF7CA /* HomeVC.swift in Sources */,
 				95225472288FDA8D00A811CC /* UIImageView+LoadImage.swift in Sources */,
 				95811498288BB07F000C627F /* LogInVC.swift in Sources */,
 				95225463288FD09C00A811CC /* User.swift in Sources */,
+				958E84A82892FE0D000C786C /* EditTaskVC.swift in Sources */,
 				959E2A8A288EEC5200E0DA3B /* TaskCell.swift in Sources */,
 				950D8C38288E3B0600BAB304 /* BigTask.swift in Sources */,
 				9522546F288FDA8D00A811CC /* UIViewController+LoadingSpinner.swift in Sources */,
 				959A2FE2289177CA001B5723 /* EmptyView.swift in Sources */,
+				958E84A42892FDD6000C786C /* EditBigTaskVC.swift in Sources */,
 				959E2A8C288EFADB00E0DA3B /* TabBarController.swift in Sources */,
 				9554C29B288A5127003CF7CA /* AppDelegate.swift in Sources */,
+				958E84A62892FE05000C786C /* HistoryVC.swift in Sources */,
 				95225470288FDA8D00A811CC /* iOSDropDown.swift in Sources */,
 				95225473288FDA8D00A811CC /* UIView+Fade.swift in Sources */,
 				9581149E288BB2C7000C627F /* GradientButton.swift in Sources */,
 				9554C29D288A5127003CF7CA /* SceneDelegate.swift in Sources */,
-				95DC51B328923AC2003C3D90 /* ManageBigTask.swift in Sources */,
+				95DC51B328923AC2003C3D90 /* ManageBigTaskVC.swift in Sources */,
 				9581149C288BB175000C627F /* Textfield.swift in Sources */,
 				950D8C33288E37FE00BAB304 /* Task.swift in Sources */,
 				9524B7A3288D98C400CA5FF1 /* AddBigTaskVC.swift in Sources */,

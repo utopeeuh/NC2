@@ -33,16 +33,24 @@ class UserRepository{
                 
                 // Set current user data
                 group.notify(queue: .main){
+                    var ongoingTasks : [BigTask] = []
+                    var finishedTasks : [BigTask] = []
+                    
+                    bigTasks.forEach { bigTask in
+                        bigTask.isDone ? finishedTasks.append(bigTask) : ongoingTasks.append(bigTask)
+                    }
+                    
                     currentUser = User(
                         id: Auth.auth().currentUser!.uid,
                         email: doc.get("email") as? String ?? "",
                         username: doc.get("username") as? String ?? "",
                         xp: doc.get("xp") as? Int ?? 0,
-                        bigTasks: bigTasks,
+                        ongoingTasks: ongoingTasks,
+                        finishedTasks: finishedTasks,
                         friends: []
                     )
                     
-                    currentUser?.bigTasks.sort { (lhs: BigTask, rhs: BigTask) -> Bool in
+                    currentUser?.ongoingTasks.sort { (lhs: BigTask, rhs: BigTask) -> Bool in
                         return lhs.dateCreated > rhs.dateCreated
                     }
                     

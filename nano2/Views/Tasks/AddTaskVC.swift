@@ -12,15 +12,16 @@ class AddTaskVC: UIViewController, VCConfig{
     private var vstack = UIStackView()
     private var titleLabel = TextFieldLabel()
     private var titleField = Textfield()
-    private var goalsLabel = TextFieldLabel()
-    private var goalsField = Textfield()
     private var progressLabel = TextFieldLabel()
     private var progressDropDown = DropDown()
     private var saveButton = Button()
     
     private var selectedProgress = 0
     
+    public var isEditingMode = false
+    public var currTask : Task?
     public var completion: ((Task) -> Void)?
+    public var editCompletion: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,8 @@ class AddTaskVC: UIViewController, VCConfig{
     
         configureComponents()
         configureLayout()
+        
+        configureEditing()
     }
     
     func configureComponents() {
@@ -42,10 +45,6 @@ class AddTaskVC: UIViewController, VCConfig{
         titleLabel.setText("title")
         titleField.setText("What skill do you want to learn?")
         titleField.addBottomBorder()
-        
-        goalsLabel.setText("goals")
-        goalsField.setText("What do you want to accomplish with this?")
-        goalsField.addBottomBorder()
         
         progressLabel.setText("progress")
         progressDropDown.text = "Not Started"
@@ -75,8 +74,6 @@ class AddTaskVC: UIViewController, VCConfig{
         
         vstack.addArrangedSubview(titleLabel)
         vstack.addArrangedSubview(titleField)
-        vstack.addArrangedSubview(goalsLabel)
-        vstack.addArrangedSubview(goalsField)
         vstack.addArrangedSubview(progressLabel)
         vstack.addArrangedSubview(progressDropDown)
         vstack.addArrangedSubview(getEmptyView())
@@ -84,7 +81,6 @@ class AddTaskVC: UIViewController, VCConfig{
         vstack.translatesAutoresizingMaskIntoConstraints = false
         
         vstack.setCustomSpacing(K.Spacing.lg, after: titleField)
-        vstack.setCustomSpacing(K.Spacing.lg, after: goalsField)
         vstack.setCustomSpacing(K.Spacing.lg, after: progressDropDown)
     }
     
@@ -97,15 +93,31 @@ class AddTaskVC: UIViewController, VCConfig{
         }
     }
     
+    func configureEditing(){
+        title = "Edit Skill"
+        titleField.text = currTask?.title
+        progressDropDown.selectedIndex = currTask?.status
+        selectedProgress = currTask?.status ?? 0
+        saveButton.setTitle("Save", for: .normal)
+    }
+
     @objc func saveButtonTapped(){
         
-        if(titleField.text?.isEmpty == false && goalsField.text?.isEmpty == false){
+        if(titleField.text == ""){
+            return
+        }
+        
+        if(!isEditingMode){
             let title = titleField.text!
-            let goals = goalsField.text!
-            
-            let newTask = Task(title, goals)
+            let newTask = Task(title, selectedProgress)
             self.navigationController?.popViewController(animated: true)
             completion!(newTask)
+        }
+        else{
+            currTask!.title = titleField.text!
+            currTask!.status = selectedProgress
+            self.navigationController?.popViewController(animated: true)
+            editCompletion!()
         }
     }
 }

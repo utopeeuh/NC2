@@ -100,7 +100,7 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return currentUser?.bigTasks.count ?? 0
+        return currentUser?.ongoingTasks.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,7 +119,7 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = bigTaskTable.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TaskCell
         
-        let currBigTask = currentUser!.bigTasks[(indexPath as NSIndexPath).section]
+        let currBigTask = currentUser!.ongoingTasks[(indexPath as NSIndexPath).section]
         cell.titleLabel.text = currBigTask.title
         cell.progressLabel.text = "Progress: \(currBigTask.countProgress())"
         cell.manageButton.bigTask = currBigTask
@@ -130,12 +130,8 @@ class HomeVC: UIViewController, VCConfig,  UITableViewDelegate, UITableViewDataS
     }
     
     @objc func goToManageBigTask(_ sender: TaskButton){
-        let vc = ManageBigTask()
+        let vc = ManageBigTaskVC()
         vc.currBigTask = sender.bigTask
-//        vc.finishCompletion = {
-//            self.bigTaskTable.reloadData()
-//            print("Reloaded Table")
-//        }
         
         vc.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(vc, animated: true)

@@ -27,6 +27,10 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     
     private var tasks : [Task] = []
     
+    public var isEditingMode = false
+    public var taskEdit : BigTask?
+    public var editCompletion : (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +39,8 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         
         configureComponents()
         configureLayout()
+        
+        configureEditing()
     }
     
     func configureComponents() {
@@ -90,12 +96,26 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     }
     
     @objc func saveButtonTapped(){
-        //save to firebase
-        let newBigTask = BigTask(bigTitle.text!, tasks)
-        taskRepo.createTask(newBigTask){
-            self.saveCompletion?()
-            self.navigationController?.popViewController(animated: true)
+        if(bigTitle.text == ""){
+            return
         }
+        
+        if(!isEditingMode){
+            //save to firebase
+            let newBigTask = BigTask(bigTitle.text!, tasks)
+            taskRepo.createTask(newBigTask){
+                self.saveCompletion?()
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else{
+            //update existing data
+            taskEdit!.title = bigTitle.text
+            taskRepo.recreateBigTask(taskEdit!){
+                self.editCompletion?()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
     }
     
     func configureLayout() {
@@ -111,9 +131,25 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
 
         vc.completion = {[self] newTask in
             tasks.append(newTask)
+            if(isEditingMode){
+                taskEdit?.tasks.append(newTask)
+            }
             taskTable.reloadData()
         }
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func configureEditing(){
+        if(!isEditingMode){
+            return
+        }
+        
+        title = "Edit plan"
+        bigTitle.text = taskEdit?.title
+        tasks = taskEdit!.tasks
+        saveButton.setTitle("Update", for: .normal)
+        
+        taskTable.reloadData()
     }
     
     // MARK: - Configure table view
@@ -155,7 +191,15 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
     }
     
     @objc func goToTaskEdit(_ sender: TaskButton){
-        print(sender.task!.title)
+        let vc = AddTaskVC()
+
+        vc.isEditingMode = true
+        vc.currTask = sender.task
+        
+        vc.editCompletion = {[self] in
+            taskTable.reloadData()
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
