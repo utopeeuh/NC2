@@ -34,7 +34,7 @@ class LogInVC: UIViewController, VCConfig{
         configureComponents()
         configureLayout()
         
-        loginTapped(self)
+//        loginTapped(self)
     }
     
     func configureComponents(){

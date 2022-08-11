@@ -110,6 +110,7 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         } else{
             //update existing data
             taskEdit!.title = bigTitle.text
+            taskEdit!.tasks = tasks
             taskRepo.recreateBigTask(taskEdit!){
                 self.editCompletion?()
                 self.navigationController?.popViewController(animated: true)
@@ -185,6 +186,7 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         cell.progressLabel.text = "Current progress: \(convertStatus(currTask.status ?? 0))"
         cell.setState(K.State.isCreating)
         cell.editButton.task = currTask
+        cell.editButton.row = (indexPath as NSIndexPath).section
         cell.editButton.addTarget(self, action: #selector(goToTaskEdit(_:)), for: .touchUpInside)
         
         return cell
@@ -199,6 +201,12 @@ class AddBigTaskVC: UIViewController, VCConfig, UITableViewDelegate, UITableView
         vc.editCompletion = {[self] in
             taskTable.reloadData()
         }
+        
+        vc.deleteCompletion = {[self] in
+            tasks.remove(at: sender.row!)
+            taskTable.reloadData()
+        }
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

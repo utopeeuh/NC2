@@ -22,6 +22,8 @@ class AddTaskVC: UIViewController, VCConfig{
     public var currTask : Task?
     public var completion: ((Task) -> Void)?
     public var editCompletion: (() -> Void)?
+    public var deleteCompletion: (() -> Void)?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,11 +96,33 @@ class AddTaskVC: UIViewController, VCConfig{
     }
     
     func configureEditing(){
-        title = "Edit Skill"
-        titleField.text = currTask?.title
-        progressDropDown.selectedIndex = currTask?.status
-        selectedProgress = currTask?.status ?? 0
-        saveButton.setTitle("Save", for: .normal)
+        
+        if(isEditingMode){
+            title = "Edit Skill"
+            titleField.text = currTask?.title
+            progressDropDown.selectedIndex = currTask?.status
+            selectedProgress = currTask?.status ?? 0
+            saveButton.setTitle("Save", for: .normal)
+            
+            let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteButtonTapped))
+            navigationItem.rightBarButtonItem = deleteButton
+        }
+    }
+    
+    @objc func deleteButtonTapped(){
+        // create the alert
+        let alert = UIAlertController(title: "Delete skill", message: "Are you sure you want to delete this skill?", preferredStyle: UIAlertController.Style.alert)
+
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [self] (UIAlertAction)in
+            deleteCompletion!()
+            navigationController?.popViewController(animated: true)
+        }))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc func saveButtonTapped(){

@@ -113,7 +113,7 @@ class TaskRepository{
         }
     }
     
-    func createTask(_ bigTask: BigTask, completion: @escaping () -> Void){
+    func createTask(_ bigTask: BigTask, completion: @escaping () -> Void) {
 
         // create small tasks
         

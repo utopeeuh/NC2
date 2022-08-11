@@ -39,10 +39,10 @@ class TaskCell: UITableViewCell{
         layer.masksToBounds = true
         layer.borderColor = UIColor.systemBlue.cgColor
         layer.borderWidth = 1
-//        contentView.alpha = 0
-//    
-//        // fade in
-//        UIView.animate(withDuration: 1, animations: { self.contentView.alpha = 1 })
+        contentView.alpha = 0
+    
+        // fade in
+        UIView.animate(withDuration: 1, animations: { self.contentView.alpha = 1 })
         
         titleLabel.font = UIFont.systemFont(ofSize: K.FontSize.md, weight: .medium)
         progressLabel.font = UIFont.systemFont(ofSize: K.FontSize.sm, weight: .regular)
